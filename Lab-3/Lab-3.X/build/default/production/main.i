@@ -2660,10 +2660,67 @@ typedef uint16_t uintptr_t;
 
 # 1 "./ADC.h" 1
 # 36 "./ADC.h"
-void ADC(void);
+void ADC1(void);
+void ADC2(void);
+void interADC(void);
 # 32 "main.c" 2
 
 
+
+void init(void);
+
+uint8_t pot1 = 0;
+uint8_t pot2 = 0;
+
+
+
+
+
+
+
+void __attribute__((picinterrupt(("")))) ISR(void){
+    if (PIR1bits.ADIF == 1){
+        if (ADCON0bits.CHS0 == 0){
+            pot1 = ADRESH;
+        }
+        if (ADCON0bits.CHS0 == 1){
+            pot2 = ADRESH;
+        }
+        PIR1bits.ADIF = 0;
+
+    }
+}
+
 void main(void) {
+    init();
+    interADC();
+    while(1){
+        ADC1();
+        _delay((unsigned long)((10)*(8000000/4000.0)));
+        ADC2();
+        _delay((unsigned long)((10)*(8000000/4000.0)));
+    }
     return;
+}
+
+
+
+
+
+void init(void){
+    TRISD = 0;
+    TRISC = 0;
+    TRISBbits.TRISB1 = 1;
+    TRISBbits.TRISB4 = 1;
+    ANSELH = 0;
+    ANSEL = 0;
+    PORTB = 0;
+    PORTC = 0;
+    PORTD = 0;
+    INTCON=0;
+    INTCONbits.GIE = 1;
+    INTCONbits.RBIE = 1;
+    INTCONbits.RBIF = 0;
+    IOCBbits.IOCB4 = 1;
+    IOCBbits.IOCB1 = 1;
 }

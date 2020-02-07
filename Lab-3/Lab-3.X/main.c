@@ -31,6 +31,61 @@
 #include <pic16f887.h>
 #include "ADC.h"
 
+//Protoripos de funciones
+void init(void);
+
+uint8_t pot1 = 0;
+uint8_t pot2 = 0;
+
+
+
+
+
+//Vector de interrupcion
+
+void __interrupt() ISR(void){
+    if (PIR1bits.ADIF == 1){
+        if (ADCON0bits.CHS0 == 0){
+            pot1 = ADRESH;
+        }
+        if (ADCON0bits.CHS0 == 1){
+            pot2 = ADRESH;
+        }
+        PIR1bits.ADIF = 0;
+
+    } 
+}
+
 void main(void) {
+    init();
+    interADC();
+    while(1){
+        ADC1();
+        __delay_ms(10);
+        ADC2();
+        __delay_ms(10);
+    }
     return;
+}
+
+
+
+
+//Funcion de inicializacion de puertos
+void init(void){            
+    TRISD = 0;
+    TRISC = 0;
+    TRISBbits.TRISB1 = 1;
+    TRISBbits.TRISB4 = 1;
+    ANSELH = 0;
+    ANSEL = 0;
+    PORTB = 0;
+    PORTC = 0;
+    PORTD = 0;
+    INTCON=0;
+    INTCONbits.GIE = 1;
+    INTCONbits.RBIE = 1;
+    INTCONbits.RBIF = 0;
+    IOCBbits.IOCB4 = 1;
+    IOCBbits.IOCB1 = 1;
 }

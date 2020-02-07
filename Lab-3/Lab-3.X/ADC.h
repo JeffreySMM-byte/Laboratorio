@@ -33,7 +33,9 @@
 
 #include <xc.h> // include processor files - each processor file is guarded.  
 
-void ADC(void);
+void ADC1(void);
+void ADC2(void);
+void interADC(void);
 
 
 #endif	/* XC_HEADER_TEMPLATE_H */
