@@ -23,74 +23,104 @@
 
 // #pragma config statements should precede project file includes.
 // Use project enums instead of #define for ON and OFF.
-#define _XTAL_FREQ 4000000
+#define _XTAL_FREQ 8000000
 
 #include <xc.h>
 #include <stdint.h>
-
-
+#include <pic16f887.h>
+#include "ADC.h"
+#include "TMR0.h"
 
 //Prototipos de funciones y declaracion de variables
 void init(void);
-uint8_t apachado = 0; 
-uint8_t apachado2 = 0; 
+uint8_t i = 0; 
+uint8_t contador = 0; 
+uint8_t d1 = 0;
+uint8_t d2 = 0;
+uint8_t d = 0;
+uint8_t adc = 0;
 
+unsigned char const SEGMENT_MAP[10] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x6F, 0x77, 0x1F, 0x4E, 0x3D, 0x4F, 0x47};
+
+
+
+
+//Vector de interrupcion
 void __interrupt() ISR(void){
-//    if(INTCONbits.RBIF == 1){
-    if (INTCONbits.RBIF==1){
+    
+    INTCONbits.GIE = 0;
+    INTCONbits.RBIE = 0;
+    INTCONbits.T0IE = 0;
+    if(INTCONbits.RBIF == 1){
+
         if(PORTBbits.RB0 == 1){
-            INTCONbits.GIE=0;
-            INTCONbits.RBIE=0;
-            PORTAbits.RA1 = 1;
-            INTCONbits.GIE=1;
-            INTCONbits.RBIE=1;
-            INTCONbits.RBIF=0;
+            i++;
+            PORTA = i;
         }
+
         if(PORTBbits.RB1 == 1){
-            INTCONbits.GIE=0;
-            INTCONbits.RBIE=0;
-            PORTAbits.RA2 = 1;
-            INTCONbits.GIE=1;
-            INTCONbits.RBIE=1;
-            INTCONbits.RBIF=0;  
+            i--;
+            PORTA = i;
+        }
+
+
+        INTCONbits.RBIF = 0;
+
+    }
+
+
+    if (PIR1bits.ADIF == 1){
+        adc = 1;
+        PIR1bits.ADIF = 0;
+
+    } 
+    if (INTCONbits.TMR0IF == 1) {
+        INTCONbits.TMR0IF = 0;
+        TMR0 = 4;
+        if(contador == 0){
+            contador = 1;
+        } else {
+            contador = 0;
         }
     }
-    
-//    if(PORTBbits.RB0 == 1 && apachado ==0){
-//        INTCONbits.GIE = 0;
-//        INTCONbits.RBIE = 0;
-//        apachado = 1;
-//        PORTA++;
-//        INTCONbits.GIE = 1;
-//        INTCONbits.RBIE = 1;
-//        INTCONbits.RBIF = 0;
-//    }
-//    if(PORTBbits.RB0 == 0){
-//        apachado = 0;
-//    }
-//    
-//     if(PORTBbits.RB1 == 1 && apachado2 ==0){
-//        INTCONbits.GIE = 0;
-//        INTCONbits.RBIE = 0;
-//        apachado2 = 1;
-//        PORTA--;
-//        INTCONbits.GIE = 1;
-//        INTCONbits.RBIE = 1;
-//        INTCONbits.RBIF = 0;
-//    }
-//    if(PORTBbits.RB1 == 0){
-//        apachado2 = 0;
-//    }
-//    
-//}
-} 
+    INTCONbits.GIE = 1;
+    INTCONbits.RBIE = 1;
+    INTCONbits.T0IE = 1;
+}
 
 
 //Programa principal
 
 void main(void) {
     init();
-   
+    ADC();
+    initTMR0();
+    
+    while(1){
+        //PORTC = ADRESH;
+        __delay_ms(10);
+        ADCON0bits.GO_DONE = 1;
+        if (adc == 1){
+        d1 = ADRESH&0b00001111;
+        d2 = (ADRESH&0b11110000)>>4;
+        d = ADRESH;
+        adc = 0;}
+        if (i <= d){
+            PORTDbits.RD2 = 1;
+        }else{
+            PORTDbits.RD2 = 0;
+        }
+                PORTDbits.RD1 = 1;
+                PORTDbits.RD0 = 0;
+                PORTC = SEGMENT_MAP[d1];
+                __delay_ms(5);
+                
+                PORTDbits.RD1 = 0;
+                PORTDbits.RD0 = 1;
+                PORTC = SEGMENT_MAP[d2];
+                __delay_ms(5);
+            
+    }
     
     return;
     
@@ -102,7 +132,7 @@ void main(void) {
 void init(void){            
     TRISD = 0;
     TRISC = 0;
-    TRISEbits.TRISE0 = 1;
+    TRISBbits.TRISB2 = 1;
     TRISBbits.TRISB0 = 1;
     TRISBbits.TRISB1 = 1;
     TRISA = 0;
@@ -119,4 +149,8 @@ void init(void){
     INTCONbits.RBIF = 0;
     IOCBbits.IOCB0 = 1;
     IOCBbits.IOCB1 = 1;
+    IOCBbits.IOCB2 = 1;
+     
 }
+
+

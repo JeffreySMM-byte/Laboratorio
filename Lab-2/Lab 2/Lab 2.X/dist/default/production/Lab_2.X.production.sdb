@@ -3,6 +3,8 @@
 [d edition pro ]
 [d chip 16F887 ]
 [d frameptr 0 ]
+"5 C:\Users\jeffr\Documents\GitHub\Lab-2\Lab 2\Lab 2.X\ADC.c
+[v _ADC ADC `(v  1 e 1 0 ]
 "10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8_16.c
@@ -11,26 +13,18 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"38 C:\Users\jeffr\Documents\GitHub\Lab-2\Lab 2\Lab 2.X\main1.c
+"49 C:\Users\jeffr\Documents\GitHub\Lab-2\Lab 2\Lab 2.X\main1.c
 [v _ISR ISR `II(v  1 e 1 0 ]
-"91
+"94
 [v _main main `(v  1 e 1 0 ]
-"102
+"132
 [v _init init `(v  1 e 1 0 ]
-"166 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
+"5 C:\Users\jeffr\Documents\GitHub\Lab-2\Lab 2\Lab 2.X\TMR0.c
+[v _initTMR0 initTMR0 `(v  1 e 1 0 ]
+"59 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
+[v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
+"166
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
-[s S75 . 1 `uc 1 RA0 1 0 :1:0 
-`uc 1 RA1 1 0 :1:1 
-`uc 1 RA2 1 0 :1:2 
-`uc 1 RA3 1 0 :1:3 
-`uc 1 RA4 1 0 :1:4 
-`uc 1 RA5 1 0 :1:5 
-`uc 1 RA6 1 0 :1:6 
-`uc 1 RA7 1 0 :1:7 
-]
-"183
-[u S84 . 1 `S75 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES84  1 e 1 @5 ]
 "228
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
 [s S54 . 1 `uc 1 RB0 1 0 :1:0 
@@ -49,6 +43,18 @@
 [v _PORTC PORTC `VEuc  1 e 1 @7 ]
 "352
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
+[s S161 . 1 `uc 1 RD0 1 0 :1:0 
+`uc 1 RD1 1 0 :1:1 
+`uc 1 RD2 1 0 :1:2 
+`uc 1 RD3 1 0 :1:3 
+`uc 1 RD4 1 0 :1:4 
+`uc 1 RD5 1 0 :1:5 
+`uc 1 RD6 1 0 :1:6 
+`uc 1 RD7 1 0 :1:7 
+]
+"369
+[u S170 . 1 `S161 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES170  1 e 1 @8 ]
 "414
 [v _PORTE PORTE `VEuc  1 e 1 @9 ]
 "459
@@ -70,9 +76,47 @@
 ]
 [u S36 . 1 `S22 1 . 1 0 `S31 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES36  1 e 1 @11 ]
+[s S76 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+`uc 1 CCP1IF 1 0 :1:2 
+`uc 1 SSPIF 1 0 :1:3 
+`uc 1 TXIF 1 0 :1:4 
+`uc 1 RCIF 1 0 :1:5 
+`uc 1 ADIF 1 0 :1:6 
+]
+"553
+[u S84 . 1 `S76 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES84  1 e 1 @12 ]
+"1238
+[v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
+[s S114 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :4:2 
+`uc 1 ADCS 1 0 :2:6 
+]
+"1276
+[s S119 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+`uc 1 ADCS0 1 0 :1:6 
+`uc 1 ADCS1 1 0 :1:7 
+]
+[s S128 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 nDONE 1 0 :1:1 
+]
+[s S131 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_DONE 1 0 :1:1 
+]
+[u S134 . 1 `S114 1 . 1 0 `S119 1 . 1 0 `S128 1 . 1 0 `S131 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES134  1 e 1 @31 ]
+"1346
+[v _OPTION_REG OPTION_REG `VEuc  1 e 1 @129 ]
 "1416
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
-[s S115 . 1 `uc 1 TRISB0 1 0 :1:0 
+[s S185 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -82,24 +126,27 @@
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "1495
-[u S124 . 1 `S115 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES124  1 e 1 @134 ]
+[u S194 . 1 `S185 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES194  1 e 1 @134 ]
 "1540
 [v _TRISC TRISC `VEuc  1 e 1 @135 ]
 "1602
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
-[s S102 . 1 `uc 1 TRISE0 1 0 :1:0 
-`uc 1 TRISE1 1 0 :1:1 
-`uc 1 TRISE2 1 0 :1:2 
-`uc 1 TRISE3 1 0 :1:3 
+[s S310 . 1 `uc 1 TMR1IE 1 0 :1:0 
+`uc 1 TMR2IE 1 0 :1:1 
+`uc 1 CCP1IE 1 0 :1:2 
+`uc 1 SSPIE 1 0 :1:3 
+`uc 1 TXIE 1 0 :1:4 
+`uc 1 RCIE 1 0 :1:5 
+`uc 1 ADIE 1 0 :1:6 
 ]
-"1677
-[u S107 . 1 `S102 1 . 1 0 ]
-[v _TRISEbits TRISEbits `VES107  1 e 1 @137 ]
-[s S145 . 1 `uc 1 IOCB 1 0 :8:0 
+"1718
+[u S318 . 1 `S310 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES318  1 e 1 @140 ]
+[s S213 . 1 `uc 1 IOCB 1 0 :8:0 
 ]
 "2436
-[s S147 . 1 `uc 1 IOCB0 1 0 :1:0 
+[s S215 . 1 `uc 1 IOCB0 1 0 :1:0 
 `uc 1 IOCB1 1 0 :1:1 
 `uc 1 IOCB2 1 0 :1:2 
 `uc 1 IOCB3 1 0 :1:3 
@@ -108,24 +155,57 @@
 `uc 1 IOCB6 1 0 :1:6 
 `uc 1 IOCB7 1 0 :1:7 
 ]
-[u S156 . 1 `S145 1 . 1 0 `S147 1 . 1 0 ]
-[v _IOCBbits IOCBbits `VES156  1 e 1 @150 ]
+[u S224 . 1 `S213 1 . 1 0 `S215 1 . 1 0 ]
+[v _IOCBbits IOCBbits `VES224  1 e 1 @150 ]
+[s S366 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 VCFG0 1 0 :1:4 
+`uc 1 VCFG1 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 ADFM 1 0 :1:7 
+]
+"2991
+[u S372 . 1 `S366 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES372  1 e 1 @159 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
-"91 C:\Users\jeffr\Documents\GitHub\Lab-2\Lab 2\Lab 2.X\main1.c
+"36 C:\Users\jeffr\Documents\GitHub\Lab-2\Lab 2\Lab 2.X\main1.c
+[v _i i `uc  1 e 1 0 ]
+"37
+[v _contador contador `uc  1 e 1 0 ]
+"38
+[v _d1 d1 `uc  1 e 1 0 ]
+"39
+[v _d2 d2 `uc  1 e 1 0 ]
+"40
+[v _d d `uc  1 e 1 0 ]
+"41
+[v _adc adc `uc  1 e 1 0 ]
+"43
+[v _SEGMENT_MAP SEGMENT_MAP `DC[10]uc  1 e 10 0 ]
+"94
 [v _main main `(v  1 e 1 0 ]
 {
-"97
+"127
 } 0
-"102
+"5 C:\Users\jeffr\Documents\GitHub\Lab-2\Lab 2\Lab 2.X\TMR0.c
+[v _initTMR0 initTMR0 `(v  1 e 1 0 ]
+{
+"9
+} 0
+"132 C:\Users\jeffr\Documents\GitHub\Lab-2\Lab 2\Lab 2.X\main1.c
 [v _init init `(v  1 e 1 0 ]
 {
-"122
+"154
 } 0
-"38
+"5 C:\Users\jeffr\Documents\GitHub\Lab-2\Lab 2\Lab 2.X\ADC.c
+[v _ADC ADC `(v  1 e 1 0 ]
+{
+"18
+} 0
+"49 C:\Users\jeffr\Documents\GitHub\Lab-2\Lab 2\Lab 2.X\main1.c
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"86
+"89
 } 0
