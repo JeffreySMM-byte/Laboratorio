@@ -6,9 +6,9 @@ void ADC1(void){
 
 ADCON0bits.ADCS=01;
 ADCON0bits.CHS0=0;
-ADCON0bits.CHS1=1;
+ADCON0bits.CHS1=0;
 ADCON0bits.CHS2=0;
-ADCON0bits.CHS3=1; //Se usa el AN10
+ADCON0bits.CHS3=0; //Se usa el AN0
 ADCON0bits.GO_nDONE=0;
 ADCON0bits.ADON=1;
 ADCON1bits.ADFM=0;
@@ -19,9 +19,9 @@ void ADC2(void){
 
 ADCON0bits.ADCS=01;
 ADCON0bits.CHS0=1;
-ADCON0bits.CHS1=1;
+ADCON0bits.CHS1=0;
 ADCON0bits.CHS2=0;
-ADCON0bits.CHS3=1; //Se usa el AN11
+ADCON0bits.CHS3=0; //Se usa el AN1
 ADCON0bits.GO_nDONE=0;
 ADCON0bits.ADON=1;
 ADCON1bits.ADFM=0;

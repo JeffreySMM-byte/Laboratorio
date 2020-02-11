@@ -24,12 +24,13 @@
 
 
 #include <xc.h>
-#define _XTAL_FREQ 8000000
+#define _XTAL_FREQ 4000000
 
 
 #include <stdint.h>
 #include <pic16f887.h>
 #include "ADC.h"
+#include "LCD8bits.h"
 
 //Protoripos de funciones
 void init(void);
@@ -59,6 +60,7 @@ void __interrupt() ISR(void){
 void main(void) {
     init();
     interADC();
+    Lcd_Init();
     while(1){
         ADC1();
         __delay_ms(10);
@@ -72,11 +74,12 @@ void main(void) {
 
 
 //Funcion de inicializacion de puertos
-void init(void){            
+void init(void){  
+    TRISB = 0;
     TRISD = 0;
     TRISC = 0;
-    TRISBbits.TRISB1 = 1;
-    TRISBbits.TRISB4 = 1;
+    PORTAbits.RA0 = 1;
+    PORTAbits.RA1 = 1;
     ANSELH = 0;
     ANSEL = 0;
     PORTB = 0;
@@ -86,6 +89,4 @@ void init(void){
     INTCONbits.GIE = 1;
     INTCONbits.RBIE = 1;
     INTCONbits.RBIF = 0;
-    IOCBbits.IOCB4 = 1;
-    IOCBbits.IOCB1 = 1;
 }

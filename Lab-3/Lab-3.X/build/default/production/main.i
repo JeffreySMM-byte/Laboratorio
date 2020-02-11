@@ -2665,6 +2665,21 @@ void ADC2(void);
 void interADC(void);
 # 32 "main.c" 2
 
+# 1 "./LCD8bits.h" 1
+# 37 "./LCD8bits.h"
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
+# 37 "./LCD8bits.h" 2
+
+
+
+void Lcd_Cmd(char a);
+void Lcd_Clear(void);
+void Lcd_Set_Cursor(char a, char b);
+void Lcd_Init(void);
+void Lcd_Write_Char(char a);
+void Lcd_Write_String(char *a);
+# 33 "main.c" 2
+
 
 
 void init(void);
@@ -2694,11 +2709,12 @@ void __attribute__((picinterrupt(("")))) ISR(void){
 void main(void) {
     init();
     interADC();
+    Lcd_Init();
     while(1){
         ADC1();
-        _delay((unsigned long)((10)*(8000000/4000.0)));
+        _delay((unsigned long)((10)*(4000000/4000.0)));
         ADC2();
-        _delay((unsigned long)((10)*(8000000/4000.0)));
+        _delay((unsigned long)((10)*(4000000/4000.0)));
     }
     return;
 }
@@ -2708,10 +2724,11 @@ void main(void) {
 
 
 void init(void){
+    TRISB = 0;
     TRISD = 0;
     TRISC = 0;
-    TRISBbits.TRISB1 = 1;
-    TRISBbits.TRISB4 = 1;
+    PORTAbits.RA0 = 1;
+    PORTAbits.RA1 = 1;
     ANSELH = 0;
     ANSEL = 0;
     PORTB = 0;
@@ -2721,6 +2738,4 @@ void init(void){
     INTCONbits.GIE = 1;
     INTCONbits.RBIE = 1;
     INTCONbits.RBIF = 0;
-    IOCBbits.IOCB4 = 1;
-    IOCBbits.IOCB1 = 1;
 }
