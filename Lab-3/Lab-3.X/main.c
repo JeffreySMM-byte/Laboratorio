@@ -32,6 +32,7 @@
 #include <pic16f887.h>
 #include "ADC.h"
 #include "LCD8bits.h"
+#include "USART.h"
 
 //Protoripos de funciones
 void init(void);
@@ -39,7 +40,7 @@ void init(void);
 float pot1 = 0;
 float pot2 = 0;
 uint8_t adc = 0;
-uint8_t ent1 = 0, ent2 =0, dec1 = 0, dec2 = 0;
+uint8_t ent1 = 0, ent2 =0, dec1 = 0, dec2 = 0, datos = 0, cont = 0;
 float deci1 = 0, deci2 = 0;
 
 
@@ -64,7 +65,11 @@ void __interrupt() ISR(void){
 //        }
         PIR1bits.ADIF = 0;
 
-    } 
+    }
+    
+    if (PIR1bits.RCIF == 1){
+        datos = RCREG;
+    }
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
 }
@@ -73,6 +78,7 @@ void main(void) {
 //    INTCONbits.GIE = 1;
 //    INTCONbits.PEIE = 1;
     init();
+    serial();
     Lcd_Init();
     Lcd_Clear();
     Lcd_Set_Cursor(1, 1);
@@ -98,13 +104,13 @@ void main(void) {
         Lcd_Write_Number(ent1);
         Lcd_Write_Char(".");
         Lcd_Write_Number(dec1);
-        if(dec1 >= 10){//escribimos decimal según el caso
-            Lcd_Write_Number(dec1);
-        }else{
-            Lcd_Write_String("0");
-            Lcd_Write_Number(dec1);
-        }
-        __delay_ms(10);
+//        if(dec1 >= 10){//escribimos decimal según el caso
+//            Lcd_Write_Number(dec1);
+//        }else{
+//            Lcd_Write_String("0");
+//            Lcd_Write_Number(dec1);
+//        }
+//        __delay_ms(10);
                
         ADC2();
          if(adc == 1){
@@ -123,7 +129,19 @@ void main(void) {
         __delay_ms(10);
         
         
+        if (datos == 43 ){
+            cont++;
+        } else if (datos == 45){
+            cont--;
+        }
+        Lcd_Set_Cursor(2,14);
+        Lcd_Write_Number(cont);
         
+        
+        enviar(ent1);
+        enviar(ent2);
+        enviar(dec1);
+        enviar(dec2);
         
         
 

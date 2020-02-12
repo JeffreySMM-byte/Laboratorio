@@ -2821,5 +2821,31 @@ extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
 # 34 "./USART.h" 2
+
+
+void serial (void);
+void enviar (int dat);
 # 5 "USART.c" 2
 
+
+void serial (void){
+    TRISC = 0x80;
+    PIE1bits.RCIE = 0;
+    TXSTA = 0b00100110;
+    RCSTA = 0b10010000;
+    SPBRG = 103;
+}
+
+
+
+void enviar (int dat){
+
+
+
+
+
+
+    while (TXSTAbits.TRMT == 0){
+    }
+    TXREG = dat;
+}

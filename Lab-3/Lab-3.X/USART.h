@@ -33,7 +33,8 @@
 
 #include <xc.h> // include processor files - each processor file is guarded.  
 
-
+void serial (void);
+void enviar (int dat);
 
 
 

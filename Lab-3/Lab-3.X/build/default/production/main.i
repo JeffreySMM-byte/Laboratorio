@@ -2681,6 +2681,12 @@ void Lcd_Write_String(char *a);
 void Lcd_Write_Number(uint8_t var);
 # 34 "main.c" 2
 
+# 1 "./USART.h" 1
+# 36 "./USART.h"
+void serial (void);
+void enviar (int dat);
+# 35 "main.c" 2
+
 
 
 void init(void);
@@ -2688,17 +2694,21 @@ void init(void);
 float pot1 = 0;
 float pot2 = 0;
 uint8_t adc = 0;
-uint8_t ent1 = 0, ent2 =0, dec1 = 0, dec2 = 0;
+uint8_t ent1 = 0, ent2 =0, dec1 = 0, dec2 = 0, datos = 0, cont = 0;
 float deci1 = 0, deci2 = 0;
-# 52 "main.c"
+# 53 "main.c"
 void __attribute__((picinterrupt(("")))) ISR(void){
     INTCONbits.GIE = 0;
     INTCONbits.PEIE = 0;
     if (PIR1bits.ADIF == 1){
         adc = 1;
-# 65 "main.c"
+# 66 "main.c"
         PIR1bits.ADIF = 0;
 
+    }
+
+    if (PIR1bits.RCIF == 1){
+        datos = RCREG;
     }
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
@@ -2708,6 +2718,7 @@ void main(void) {
 
 
     init();
+    serial();
     Lcd_Init();
     Lcd_Clear();
     Lcd_Set_Cursor(1, 1);
@@ -2733,14 +2744,7 @@ void main(void) {
         Lcd_Write_Number(ent1);
         Lcd_Write_Char(".");
         Lcd_Write_Number(dec1);
-        if(dec1 >= 10){
-            Lcd_Write_Number(dec1);
-        }else{
-            Lcd_Write_String("0");
-            Lcd_Write_Number(dec1);
-        }
-        _delay((unsigned long)((10)*(4000000/4000.0)));
-
+# 115 "main.c"
         ADC2();
          if(adc == 1){
             pot2 = ADRESH;
@@ -2758,7 +2762,19 @@ void main(void) {
         _delay((unsigned long)((10)*(4000000/4000.0)));
 
 
+        if (datos == 43 ){
+            cont++;
+        } else if (datos == 45){
+            cont--;
+        }
+        Lcd_Set_Cursor(2,14);
+        Lcd_Write_Number(cont);
 
+
+        enviar(ent1);
+        enviar(ent2);
+        enviar(dec1);
+        enviar(dec2);
 
 
 
