@@ -6,11 +6,11 @@
 #include "LCD8bits.h"
 
 
-void Lcd_Cmd(char a)
+void Lcd_Cmd(uint8_t z)
 {
-	PORTBbits.RB6 = 0;             //RS = 0
-	PORTD = a;                  //Data transfer
-	PORTBbits.RB7  = 1;            //Clock para activar el pin E
+	PORTBbits.RB6 = 0;          //RS = 0
+	PORTD = z;                  //Data transfer
+	PORTBbits.RB7  = 1;         //Clock para activar el pin E
     __delay_ms(4);
     PORTBbits.RB7  = 0;             
 }
@@ -21,17 +21,17 @@ void Lcd_Clear(void)
 	Lcd_Cmd(1);
 }
 
-void Lcd_Set_Cursor(char a, char b)
+void Lcd_Set_Cursor(uint8_t x, uint8_t y)
 {
 	char temp;
-	if(a == 1)
+	if(x == 1)
 	{
-	  temp = 0x80 + b - 1;
+	  temp = 0x80 + y - 1;
       Lcd_Cmd(temp);
 	}
-	else if(a == 2)
+	else if(x == 2)
 	{
-		temp = 0xC0 + b - 1;
+		temp = 0xC0 + y - 1;
 		Lcd_Cmd(temp);
 	}
 }
@@ -50,7 +50,7 @@ void Lcd_Init(void)
   //Lcd_Cmd(0x10);
   Lcd_Cmd(0x01);
   Lcd_Cmd(0x06);
-  Lcd_Cmd(0x0E);
+  Lcd_Cmd(0x0C);
  }
 
 void Lcd_Write_Char(char a)
@@ -69,3 +69,8 @@ void Lcd_Write_String(char *a)
 	   Lcd_Write_Char(a[i]);
 }
 
+void Lcd_Write_Number(uint8_t var){
+    char str[4];
+    sprintf(str, "%d", var);
+    Lcd_Write_String(str);
+}

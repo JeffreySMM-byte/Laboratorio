@@ -24,6 +24,7 @@
 
 
 #include <xc.h>
+
 #define _XTAL_FREQ 4000000
 
 
@@ -35,8 +36,12 @@
 //Protoripos de funciones
 void init(void);
 
-uint8_t pot1 = 0;
-uint8_t pot2 = 0;
+float pot1 = 0;
+float pot2 = 0;
+uint8_t adc = 0;
+uint8_t ent1 = 0, ent2 =0, dec1 = 0, dec2 = 0;
+float deci1 = 0, deci2 = 0;
+
 
 
 
@@ -45,27 +50,83 @@ uint8_t pot2 = 0;
 //Vector de interrupcion
 
 void __interrupt() ISR(void){
+    INTCONbits.GIE = 0;
+    INTCONbits.PEIE = 0;
     if (PIR1bits.ADIF == 1){
-        if (ADCON0bits.CHS0 == 0){
-            pot1 = ADRESH;
-        }
-        if (ADCON0bits.CHS0 == 1){
-            pot2 = ADRESH;
-        }
+        adc = 1;
+//        if (ADCON0bits.CHS0 == 0){  //Si se utiliza el potenciometro 1 el valor del adc estara en su variable
+//            pot1 = ADRESH;
+//            ADCON0bits.GO_DONE=1;
+//        }
+//        if (ADCON0bits.CHS0 == 1){  //Si se utiliza el potenciometro 2 el valor del adc estara en su variable
+//            pot2 = ADRESH;
+//            ADCON0bits.GO_DONE=1;
+//        }
         PIR1bits.ADIF = 0;
 
     } 
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
 }
 
 void main(void) {
+//    INTCONbits.GIE = 1;
+//    INTCONbits.PEIE = 1;
     init();
-    interADC();
     Lcd_Init();
+    Lcd_Clear();
+    Lcd_Set_Cursor(1, 1);
+    Lcd_Write_String("POT1");
+    Lcd_Set_Cursor(1, 6);
+    Lcd_Write_String("POT2");
+    Lcd_Set_Cursor(1, 11);
+    Lcd_Write_String("CONT");
+    
     while(1){
         ADC1();
+        if(adc == 1){
+            pot1 = ADRESH;
+            adc = 0;
+            ADCON0bits.GO_DONE = 1;
+        }
+        pot1 = (pot1)* 5/255;
+        ent1 = pot1;
+        deci1 = (pot1 - ent1) * 100;
+        dec1 = deci1;
+        
+        Lcd_Set_Cursor(2, 1);
+        Lcd_Write_Number(ent1);
+        Lcd_Write_Char(".");
+        Lcd_Write_Number(dec1);
+        if(dec1 >= 10){//escribimos decimal según el caso
+            Lcd_Write_Number(dec1);
+        }else{
+            Lcd_Write_String("0");
+            Lcd_Write_Number(dec1);
+        }
         __delay_ms(10);
+               
         ADC2();
+         if(adc == 1){
+            pot2 = ADRESH;
+            adc = 0;
+            ADCON0bits.GO_DONE = 1;
+        }
+        pot2 = (pot2)* 5/255;
+        ent2 = pot2;
+        deci2 = (pot2 - ent2) * 100;
+        dec2 = deci2;
+        Lcd_Set_Cursor(2, 7);
+        Lcd_Write_Number(ent2);
+        Lcd_Write_Char(".");
+        Lcd_Write_Number(dec2);
         __delay_ms(10);
+        
+        
+        
+        
+        
+
     }
     return;
 }
@@ -74,19 +135,21 @@ void main(void) {
 
 
 //Funcion de inicializacion de puertos
-void init(void){  
+void init(void){
+    OSCCONbits.IRCF = 0b110;
+    OSCCONbits.SCS = 1;
     TRISB = 0;
     TRISD = 0;
     TRISC = 0;
-    PORTAbits.RA0 = 1;
-    PORTAbits.RA1 = 1;
+    TRISAbits.TRISA0 = 1;
+    TRISAbits.TRISA1 = 1;
     ANSELH = 0;
-    ANSEL = 0;
+    ANSEL = 0b00000011;
+    PORTA = 0;
     PORTB = 0;
     PORTC = 0;
     PORTD = 0;
     INTCON=0;
     INTCONbits.GIE = 1;
-    INTCONbits.RBIE = 1;
     INTCONbits.RBIF = 0;
 }

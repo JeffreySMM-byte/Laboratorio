@@ -2633,38 +2633,47 @@ extern __bank0 __bit __timeout;
 
 void ADC1(void);
 void ADC2(void);
-void interADC(void);
 # 3 "ADC.c" 2
 
 
 void ADC1(void){
 
-ADCON0bits.ADCS=01;
-ADCON0bits.CHS0=0;
-ADCON0bits.CHS1=0;
-ADCON0bits.CHS2=0;
-ADCON0bits.CHS3=0;
-ADCON0bits.GO_nDONE=0;
-ADCON0bits.ADON=1;
-ADCON1bits.ADFM=0;
-ADCON1bits.VCFG0=0;
-ADCON1bits.VCFG1=0;
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+
+    ADCON0bits.ADCS=01;
+    ADCON0bits.CHS0=0;
+    ADCON0bits.CHS1=0;
+    ADCON0bits.CHS2=0;
+    ADCON0bits.CHS3=0;
+    ADCON0bits.ADON=1;
+    ADCON1bits.ADFM=0;
+    ADCON1bits.VCFG0=0;
+    ADCON1bits.VCFG1=0;
+    PIE1bits.ADIE=1;
+    PIR1bits.ADIF=0;
+
+
+
+    ADCON0bits.GO_DONE=1;
+
 }
 void ADC2(void){
 
-ADCON0bits.ADCS=01;
-ADCON0bits.CHS0=1;
-ADCON0bits.CHS1=0;
-ADCON0bits.CHS2=0;
-ADCON0bits.CHS3=0;
-ADCON0bits.GO_nDONE=0;
-ADCON0bits.ADON=1;
-ADCON1bits.ADFM=0;
-ADCON1bits.VCFG0=0;
-ADCON1bits.VCFG1=0;
-}
-
-void interADC(void){
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+    ADCON0bits.ADCS=01;
+    ADCON0bits.CHS0=1;
+    ADCON0bits.CHS1=0;
+    ADCON0bits.CHS2=0;
+    ADCON0bits.CHS3=0;
+    ADCON0bits.ADON=1;
+    ADCON1bits.ADFM=0;
+    ADCON1bits.VCFG0=0;
+    ADCON1bits.VCFG1=0;
     PIE1bits.ADIE=1;
-    PIR1bits.ADIF=1;
+    PIR1bits.ADIF=0;
+
+    ADCON0bits.GO_DONE=1;
+
 }

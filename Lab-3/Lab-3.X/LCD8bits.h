@@ -37,12 +37,13 @@
 #include <stdint.h>
 #define _XTAL_FREQ 4000000
 
-void Lcd_Cmd(char a);
+void Lcd_Cmd(uint8_t z);
 void Lcd_Clear(void);
-void Lcd_Set_Cursor(char a, char b);
+void Lcd_Set_Cursor(uint8_t x, uint8_t y);
 void Lcd_Init(void);
 void Lcd_Write_Char(char a);
 void Lcd_Write_String(char *a);
+void Lcd_Write_Number(uint8_t var);
 
 
 

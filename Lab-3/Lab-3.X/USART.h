@@ -28,13 +28,14 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef __ADC_H
-#define	__ADC_H
+#ifndef _USART_H
+#define	_USART_H
 
 #include <xc.h> // include processor files - each processor file is guarded.  
 
-void ADC1(void);
-void ADC2(void);
+
+
+
 
 
 

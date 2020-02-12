@@ -2820,20 +2820,21 @@ extern char * ftoa(float f, int * status);
 
 
 
-void Lcd_Cmd(char a);
+void Lcd_Cmd(uint8_t z);
 void Lcd_Clear(void);
-void Lcd_Set_Cursor(char a, char b);
+void Lcd_Set_Cursor(uint8_t x, uint8_t y);
 void Lcd_Init(void);
 void Lcd_Write_Char(char a);
 void Lcd_Write_String(char *a);
+void Lcd_Write_Number(uint8_t var);
 # 6 "LCD8bits.c" 2
 
 
 
-void Lcd_Cmd(char a)
+void Lcd_Cmd(uint8_t z)
 {
  PORTBbits.RB6 = 0;
- PORTD = a;
+ PORTD = z;
  PORTBbits.RB7 = 1;
     _delay((unsigned long)((4)*(4000000/4000.0)));
     PORTBbits.RB7 = 0;
@@ -2845,17 +2846,17 @@ void Lcd_Clear(void)
  Lcd_Cmd(1);
 }
 
-void Lcd_Set_Cursor(char a, char b)
+void Lcd_Set_Cursor(uint8_t x, uint8_t y)
 {
  char temp;
- if(a == 1)
+ if(x == 1)
  {
-   temp = 0x80 + b - 1;
+   temp = 0x80 + y - 1;
       Lcd_Cmd(temp);
  }
- else if(a == 2)
+ else if(x == 2)
  {
-  temp = 0xC0 + b - 1;
+  temp = 0xC0 + y - 1;
   Lcd_Cmd(temp);
  }
 }
@@ -2874,7 +2875,7 @@ void Lcd_Init(void)
 
   Lcd_Cmd(0x01);
   Lcd_Cmd(0x06);
-  Lcd_Cmd(0x0E);
+  Lcd_Cmd(0x0C);
  }
 
 void Lcd_Write_Char(char a)
@@ -2891,4 +2892,10 @@ void Lcd_Write_String(char *a)
  int i;
  for(i=0;a[i]!='\0';i++)
     Lcd_Write_Char(a[i]);
+}
+
+void Lcd_Write_Number(uint8_t var){
+    char str[4];
+    sprintf(str, "%d", var);
+    Lcd_Write_String(str);
 }
