@@ -2702,7 +2702,6 @@ void __attribute__((picinterrupt(("")))) ISR(void){
     INTCONbits.PEIE = 0;
     if (PIR1bits.ADIF == 1){
         adc = 1;
-# 66 "main.c"
         PIR1bits.ADIF = 0;
 
     }
@@ -2744,7 +2743,8 @@ void main(void) {
         Lcd_Write_Number(ent1);
         Lcd_Write_Char(".");
         Lcd_Write_Number(dec1);
-# 115 "main.c"
+
+
         ADC2();
          if(adc == 1){
             pot2 = ADRESH;

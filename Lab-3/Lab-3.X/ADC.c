@@ -2,7 +2,7 @@
 #include <pic16f887.h>
 #include "ADC.h"
 
-void ADC1(void){
+void ADC1(void){                    //Funcion de inicializacion del ADC para el puerto A0
 //while(ADCON0bits.GO_DONE == 1);
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
@@ -24,7 +24,7 @@ void ADC1(void){
     ADCON0bits.GO_DONE=1;
 
 }
-void ADC2(void){
+void ADC2(void){                    //Funcion de inicializacion del ADC para el puerto A1
 //while(ADCON0bits.GO_DONE == 1);
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;

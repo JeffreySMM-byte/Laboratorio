@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.10 build 88905656 
-                                                                                               Wed Feb 12 15:33:49 2020
+                                                                                               Wed Feb 12 20:41:02 2020
 
 Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1 
      1                           	processor	16F887
@@ -1025,7 +1025,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1011 ;;
   1012 ;; *************** function _main *****************
   1013 ;; Defined at:
-  1014 ;;		line 77 in file "main.c"
+  1014 ;;		line 69 in file "main.c"
   1015 ;; Parameters:    Size  Location     Type
   1016 ;;		None
   1017 ;; Auto vars:     Size  Location     Type
@@ -1075,26 +1075,26 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1061                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
   1062                           
   1063                           
-  1064                           ;main.c: 80:     init();
+  1064                           ;main.c: 72:     init();
   1065  0386  120A  158A  20CB  120A  118A  	fcall	_init
   1066                           
-  1067                           ;main.c: 81:     serial();
+  1067                           ;main.c: 73:     serial();
   1068  038B  120A  158A  2077  120A  118A  	fcall	_serial
   1069                           
-  1070                           ;main.c: 82:     Lcd_Init();
+  1070                           ;main.c: 74:     Lcd_Init();
   1071  0390  120A  118A  27A6  120A  118A  	fcall	_Lcd_Init
   1072                           
-  1073                           ;main.c: 83:     Lcd_Clear();
+  1073                           ;main.c: 75:     Lcd_Clear();
   1074  0395  120A  158A  205B  120A  118A  	fcall	_Lcd_Clear
   1075                           
-  1076                           ;main.c: 84:     Lcd_Set_Cursor(1, 1);
+  1076                           ;main.c: 76:     Lcd_Set_Cursor(1, 1);
   1077  039A  01F6               	clrf	Lcd_Set_Cursor@y
   1078  039B  0AF6               	incf	Lcd_Set_Cursor@y,f
   1079  039C  3001               	movlw	1
   1080  039D  120A  158A  2144  120A  118A  	fcall	_Lcd_Set_Cursor
   1081  03A2                     l3113:	
   1082                           
-  1083                           ;main.c: 85:     Lcd_Write_String("POT1");
+  1083                           ;main.c: 77:     Lcd_Write_String("POT1");
   1084  03A2  300B               	movlw	(low ((STR_1-__stringbase)| (0+32768)))& (0+255)
   1085  03A3  00F5               	movwf	Lcd_Write_String@a
   1086  03A4  3080               	movlw	128
@@ -1102,7 +1102,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1088  03A6  120A  158A  21CF  120A  118A  	fcall	_Lcd_Write_String
   1089  03AB                     l3115:	
   1090                           
-  1091                           ;main.c: 86:     Lcd_Set_Cursor(1, 6);
+  1091                           ;main.c: 78:     Lcd_Set_Cursor(1, 6);
   1092  03AB  3006               	movlw	6
   1093  03AC  1683               	bsf	3,5	;RP0=1, select bank1
   1094  03AD  1303               	bcf	3,6	;RP1=0, select bank1
@@ -1112,7 +1112,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1098  03B1  3001               	movlw	1
   1099  03B2  120A  158A  2144  120A  118A  	fcall	_Lcd_Set_Cursor
   1100                           
-  1101                           ;main.c: 87:     Lcd_Write_String("POT2");
+  1101                           ;main.c: 79:     Lcd_Write_String("POT2");
   1102  03B7  3010               	movlw	(low ((STR_2-__stringbase)| (0+32768)))& (0+255)
   1103  03B8  00F5               	movwf	Lcd_Write_String@a
   1104  03B9  3080               	movlw	128
@@ -1120,7 +1120,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1106  03BB  120A  158A  21CF  120A  118A  	fcall	_Lcd_Write_String
   1107  03C0                     l3117:	
   1108                           
-  1109                           ;main.c: 88:     Lcd_Set_Cursor(1, 11);
+  1109                           ;main.c: 80:     Lcd_Set_Cursor(1, 11);
   1110  03C0  300B               	movlw	11
   1111  03C1  1683               	bsf	3,5	;RP0=1, select bank1
   1112  03C2  1303               	bcf	3,6	;RP1=0, select bank1
@@ -1131,21 +1131,21 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1117  03C7  120A  158A  2144  120A  118A  	fcall	_Lcd_Set_Cursor
   1118  03CC                     l3119:	
   1119                           
-  1120                           ;main.c: 89:     Lcd_Write_String("CONT");
+  1120                           ;main.c: 81:     Lcd_Write_String("CONT");
   1121  03CC  3015               	movlw	(low ((STR_3-__stringbase)| (0+32768)))& (0+255)
   1122  03CD  00F5               	movwf	Lcd_Write_String@a
   1123  03CE  3080               	movlw	128
   1124  03CF  00F6               	movwf	Lcd_Write_String@a+1
   1125  03D0  120A  158A  21CF  120A  118A  	fcall	_Lcd_Write_String
   1126  03D5                     l92:	
-  1127                           ;main.c: 91:     while(1){
+  1127                           ;main.c: 83:     while(1){
   1128                           
   1129                           
-  1130                           ;main.c: 92:         ADC1();
+  1130                           ;main.c: 84:         ADC1();
   1131  03D5  120A  158A  209B  120A  118A  	fcall	_ADC1
   1132  03DA                     l3121:	
   1133                           
-  1134                           ;main.c: 93:         if(adc == 1){
+  1134                           ;main.c: 85:         if(adc == 1){
   1135  03DA  037A               	decf	_adc,w
   1136  03DB  1D03               	btfss	3,2
   1137  03DC  2BDE               	goto	u4321
@@ -1155,7 +1155,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1141  03DF                     u4320:	
   1142  03DF                     l3123:	
   1143                           
-  1144                           ;main.c: 94:             pot1 = ADRESH;
+  1144                           ;main.c: 86:             pot1 = ADRESH;
   1145  03DF  1283               	bcf	3,5	;RP0=0, select bank0
   1146  03E0  1303               	bcf	3,6	;RP1=0, select bank0
   1147  03E1  081E               	movf	30,w	;volatile
@@ -1187,17 +1187,17 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1173  03FF  00AC               	movwf	_pot1^(0+128)
   1174  0400                     l3125:	
   1175                           
-  1176                           ;main.c: 95:             adc = 0;
+  1176                           ;main.c: 87:             adc = 0;
   1177  0400  01FA               	clrf	_adc
   1178  0401                     l3127:	
   1179                           
-  1180                           ;main.c: 96:             ADCON0bits.GO_DONE = 1;
+  1180                           ;main.c: 88:             ADCON0bits.GO_DONE = 1;
   1181  0401  1283               	bcf	3,5	;RP0=0, select bank0
   1182  0402  1303               	bcf	3,6	;RP1=0, select bank0
   1183  0403  149F               	bsf	31,1	;volatile
   1184  0404                     l3129:	
   1185                           
-  1186                           ;main.c: 98:         pot1 = (pot1)* 5/255;
+  1186                           ;main.c: 90:         pot1 = (pot1)* 5/255;
   1187  0404  3043               	movlw	67
   1188  0405  1283               	bcf	3,5	;RP0=0, select bank0
   1189  0406  1303               	bcf	3,6	;RP1=0, select bank0
@@ -1278,7 +1278,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1264  0459  00AC               	movwf	_pot1^(0+128)
   1265  045A                     l3131:	
   1266                           
-  1267                           ;main.c: 99:         ent1 = pot1;
+  1267                           ;main.c: 91:         ent1 = pot1;
   1268  045A  082F               	movf	(_pot1+3)^(0+128),w
   1269  045B  00F6               	movwf	___fltol@f1+3
   1270  045C  082E               	movf	(_pot1+2)^(0+128),w
@@ -1296,7 +1296,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1282  046C  00F9               	movwf	_ent1
   1283  046D                     l3133:	
   1284                           
-  1285                           ;main.c: 100:         deci1 = (pot1 - ent1) * 100;
+  1285                           ;main.c: 92:         deci1 = (pot1 - ent1) * 100;
   1286  046D  3042               	movlw	66
   1287  046E  1283               	bcf	3,5	;RP0=0, select bank0
   1288  046F  1303               	bcf	3,6	;RP1=0, select bank0
@@ -1396,7 +1396,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1382  04D9  00A4               	movwf	_deci1^(0+128)
   1383  04DA                     l3135:	
   1384                           
-  1385                           ;main.c: 101:         dec1 = deci1;
+  1385                           ;main.c: 93:         dec1 = deci1;
   1386  04DA  0827               	movf	(_deci1+3)^(0+128),w
   1387  04DB  00F6               	movwf	___fltol@f1+3
   1388  04DC  0826               	movf	(_deci1+2)^(0+128),w
@@ -1416,35 +1416,35 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1402  04EE  00EF               	movwf	_dec1
   1403  04EF                     l3137:	
   1404                           
-  1405                           ;main.c: 103:         Lcd_Set_Cursor(2, 1);
+  1405                           ;main.c: 95:         Lcd_Set_Cursor(2, 1);
   1406  04EF  01F6               	clrf	Lcd_Set_Cursor@y
   1407  04F0  0AF6               	incf	Lcd_Set_Cursor@y,f
   1408  04F1  3002               	movlw	2
   1409  04F2  120A  158A  2144  120A  118A  	fcall	_Lcd_Set_Cursor
   1410  04F7                     l3139:	
   1411                           
-  1412                           ;main.c: 104:         Lcd_Write_Number(ent1);
+  1412                           ;main.c: 96:         Lcd_Write_Number(ent1);
   1413  04F7  0879               	movf	_ent1,w
   1414  04F8  120A  158A  2102  120A  118A  	fcall	_Lcd_Write_Number
   1415  04FD                     l3141:	
   1416                           
-  1417                           ;main.c: 105:         Lcd_Write_Char(".");
+  1417                           ;main.c: 97:         Lcd_Write_Char(".");
   1418  04FD  301D               	movlw	(low ((STR_4-__stringbase)| (0+32768)))& (0+255)
   1419  04FE  120A  158A  2068  120A  118A  	fcall	_Lcd_Write_Char
   1420  0503                     l3143:	
   1421                           
-  1422                           ;main.c: 106:         Lcd_Write_Number(dec1);
+  1422                           ;main.c: 98:         Lcd_Write_Number(dec1);
   1423  0503  1283               	bcf	3,5	;RP0=0, select bank0
   1424  0504  1303               	bcf	3,6	;RP1=0, select bank0
   1425  0505  086F               	movf	_dec1,w
   1426  0506  120A  158A  2102  120A  118A  	fcall	_Lcd_Write_Number
   1427  050B                     l3145:	
   1428                           
-  1429                           ;main.c: 115:         ADC2();
+  1429                           ;main.c: 101:         ADC2();
   1430  050B  120A  158A  20B3  120A  118A  	fcall	_ADC2
   1431  0510                     l3147:	
   1432                           
-  1433                           ;main.c: 116:          if(adc == 1){
+  1433                           ;main.c: 102:          if(adc == 1){
   1434  0510  037A               	decf	_adc,w
   1435  0511  1D03               	btfss	3,2
   1436  0512  2D14               	goto	u4331
@@ -1454,7 +1454,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1440  0515                     u4330:	
   1441  0515                     l3149:	
   1442                           
-  1443                           ;main.c: 117:             pot2 = ADRESH;
+  1443                           ;main.c: 103:             pot2 = ADRESH;
   1444  0515  1283               	bcf	3,5	;RP0=0, select bank0
   1445  0516  1303               	bcf	3,6	;RP1=0, select bank0
   1446  0517  081E               	movf	30,w	;volatile
@@ -1486,17 +1486,17 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1472  0535  00A8               	movwf	_pot2^(0+128)
   1473  0536                     l3151:	
   1474                           
-  1475                           ;main.c: 118:             adc = 0;
+  1475                           ;main.c: 104:             adc = 0;
   1476  0536  01FA               	clrf	_adc
   1477  0537                     l3153:	
   1478                           
-  1479                           ;main.c: 119:             ADCON0bits.GO_DONE = 1;
+  1479                           ;main.c: 105:             ADCON0bits.GO_DONE = 1;
   1480  0537  1283               	bcf	3,5	;RP0=0, select bank0
   1481  0538  1303               	bcf	3,6	;RP1=0, select bank0
   1482  0539  149F               	bsf	31,1	;volatile
   1483  053A                     l3155:	
   1484                           
-  1485                           ;main.c: 121:         pot2 = (pot2)* 5/255;
+  1485                           ;main.c: 107:         pot2 = (pot2)* 5/255;
   1486  053A  3043               	movlw	67
   1487  053B  1283               	bcf	3,5	;RP0=0, select bank0
   1488  053C  1303               	bcf	3,6	;RP1=0, select bank0
@@ -1577,7 +1577,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1563  058F  00A8               	movwf	_pot2^(0+128)
   1564  0590                     l3157:	
   1565                           
-  1566                           ;main.c: 122:         ent2 = pot2;
+  1566                           ;main.c: 108:         ent2 = pot2;
   1567  0590  082B               	movf	(_pot2+3)^(0+128),w
   1568  0591  00F6               	movwf	___fltol@f1+3
   1569  0592  082A               	movf	(_pot2+2)^(0+128),w
@@ -1595,7 +1595,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1581  05A2  00F8               	movwf	_ent2
   1582  05A3                     l3159:	
   1583                           
-  1584                           ;main.c: 123:         deci2 = (pot2 - ent2) * 100;
+  1584                           ;main.c: 109:         deci2 = (pot2 - ent2) * 100;
   1585  05A3  3042               	movlw	66
   1586  05A4  1283               	bcf	3,5	;RP0=0, select bank0
   1587  05A5  1303               	bcf	3,6	;RP1=0, select bank0
@@ -1695,7 +1695,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1681  060F  00A0               	movwf	_deci2^(0+128)
   1682  0610                     l3161:	
   1683                           
-  1684                           ;main.c: 124:         dec2 = deci2;
+  1684                           ;main.c: 110:         dec2 = deci2;
   1685  0610  0823               	movf	(_deci2+3)^(0+128),w
   1686  0611  00F6               	movwf	___fltol@f1+3
   1687  0612  0822               	movf	(_deci2+2)^(0+128),w
@@ -1715,7 +1715,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1701  0624  00EE               	movwf	_dec2
   1702  0625                     l3163:	
   1703                           
-  1704                           ;main.c: 125:         Lcd_Set_Cursor(2, 7);
+  1704                           ;main.c: 111:         Lcd_Set_Cursor(2, 7);
   1705  0625  3007               	movlw	7
   1706  0626  1683               	bsf	3,5	;RP0=1, select bank1
   1707  0627  1303               	bcf	3,6	;RP1=0, select bank1
@@ -1726,24 +1726,24 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1712  062C  120A  158A  2144  120A  118A  	fcall	_Lcd_Set_Cursor
   1713  0631                     l3165:	
   1714                           
-  1715                           ;main.c: 126:         Lcd_Write_Number(ent2);
+  1715                           ;main.c: 112:         Lcd_Write_Number(ent2);
   1716  0631  0878               	movf	_ent2,w
   1717  0632  120A  158A  2102  120A  118A  	fcall	_Lcd_Write_Number
   1718  0637                     l3167:	
   1719                           
-  1720                           ;main.c: 127:         Lcd_Write_Char(".");
+  1720                           ;main.c: 113:         Lcd_Write_Char(".");
   1721  0637  301D               	movlw	(low ((STR_4-__stringbase)| (0+32768)))& (0+255)
   1722  0638  120A  158A  2068  120A  118A  	fcall	_Lcd_Write_Char
   1723  063D                     l3169:	
   1724                           
-  1725                           ;main.c: 128:         Lcd_Write_Number(dec2);
+  1725                           ;main.c: 114:         Lcd_Write_Number(dec2);
   1726  063D  1283               	bcf	3,5	;RP0=0, select bank0
   1727  063E  1303               	bcf	3,6	;RP1=0, select bank0
   1728  063F  086E               	movf	_dec2,w
   1729  0640  120A  158A  2102  120A  118A  	fcall	_Lcd_Write_Number
   1730  0645                     l3171:	
   1731                           
-  1732                           ;main.c: 129:         _delay((unsigned long)((10)*(4000000/4000.0)));
+  1732                           ;main.c: 115:         _delay((unsigned long)((10)*(4000000/4000.0)));
   1733  0645  300D               	movlw	13
   1734  0646  1683               	bsf	3,5	;RP0=1, select bank1
   1735  0647  1303               	bcf	3,6	;RP1=0, select bank1
@@ -1757,7 +1757,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1743  064E  2E4B               	goto	u4367
   1744  064F                     l3173:	
   1745                           
-  1746                           ;main.c: 132:         if (datos == 43 ){
+  1746                           ;main.c: 118:         if (datos == 43 ){
   1747  064F  302B               	movlw	43
   1748  0650  1283               	bcf	3,5	;RP0=0, select bank0
   1749  0651  1303               	bcf	3,6	;RP1=0, select bank0
@@ -1770,7 +1770,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1756  0657                     u4340:	
   1757  0657                     l3175:	
   1758                           
-  1759                           ;main.c: 133:             cont++;
+  1759                           ;main.c: 119:             cont++;
   1760  0657  3001               	movlw	1
   1761  0658  1683               	bsf	3,5	;RP0=1, select bank1
   1762  0659  1303               	bcf	3,6	;RP1=0, select bank1
@@ -1780,7 +1780,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1766  065D  1303               	bcf	3,6	;RP1=0, select bank0
   1767  065E  07EC               	addwf	_cont,f
   1768                           
-  1769                           ;main.c: 134:         } else if (datos == 45){
+  1769                           ;main.c: 120:         } else if (datos == 45){
   1770  065F  2E68               	goto	l3181
   1771  0660                     l3177:	
   1772  0660  302D               	movlw	45
@@ -1793,12 +1793,12 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1779  0666                     u4350:	
   1780  0666                     l3179:	
   1781                           
-  1782                           ;main.c: 135:             cont--;
+  1782                           ;main.c: 121:             cont--;
   1783  0666  3001               	movlw	1
   1784  0667  02EC               	subwf	_cont,f
   1785  0668                     l3181:	
   1786                           
-  1787                           ;main.c: 137:         Lcd_Set_Cursor(2,14);
+  1787                           ;main.c: 123:         Lcd_Set_Cursor(2,14);
   1788  0668  300E               	movlw	14
   1789  0669  1683               	bsf	3,5	;RP0=1, select bank1
   1790  066A  1303               	bcf	3,6	;RP1=0, select bank1
@@ -1809,14 +1809,14 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1795  066F  120A  158A  2144  120A  118A  	fcall	_Lcd_Set_Cursor
   1796  0674                     l3183:	
   1797                           
-  1798                           ;main.c: 138:         Lcd_Write_Number(cont);
+  1798                           ;main.c: 124:         Lcd_Write_Number(cont);
   1799  0674  1283               	bcf	3,5	;RP0=0, select bank0
   1800  0675  1303               	bcf	3,6	;RP1=0, select bank0
   1801  0676  086C               	movf	_cont,w
   1802  0677  120A  158A  2102  120A  118A  	fcall	_Lcd_Write_Number
   1803  067C                     l3185:	
   1804                           
-  1805                           ;main.c: 141:         enviar(ent1);
+  1805                           ;main.c: 127:         enviar(ent1);
   1806  067C  0879               	movf	_ent1,w
   1807  067D  1683               	bsf	3,5	;RP0=1, select bank1
   1808  067E  1303               	bcf	3,6	;RP1=0, select bank1
@@ -1829,7 +1829,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1815  0685  120A  118A  27F4  120A  118A  	fcall	_enviar
   1816  068A                     l3187:	
   1817                           
-  1818                           ;main.c: 142:         enviar(ent2);
+  1818                           ;main.c: 128:         enviar(ent2);
   1819  068A  0878               	movf	_ent2,w
   1820  068B  1683               	bsf	3,5	;RP0=1, select bank1
   1821  068C  1303               	bcf	3,6	;RP1=0, select bank1
@@ -1842,7 +1842,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1828  0693  120A  118A  27F4  120A  118A  	fcall	_enviar
   1829  0698                     l3189:	
   1830                           
-  1831                           ;main.c: 143:         enviar(dec1);
+  1831                           ;main.c: 129:         enviar(dec1);
   1832  0698  1283               	bcf	3,5	;RP0=0, select bank0
   1833  0699  1303               	bcf	3,6	;RP1=0, select bank0
   1834  069A  086F               	movf	_dec1,w
@@ -1857,7 +1857,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1843  06A3  120A  118A  27F4  120A  118A  	fcall	_enviar
   1844  06A8                     l3191:	
   1845                           
-  1846                           ;main.c: 144:         enviar(dec2);
+  1846                           ;main.c: 130:         enviar(dec2);
   1847  06A8  1283               	bcf	3,5	;RP0=0, select bank0
   1848  06A9  1303               	bcf	3,6	;RP1=0, select bank0
   1849  06AA  086E               	movf	_dec2,w
@@ -1947,7 +1947,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1933  08CB                     __ptext2:	
   1934 ;; *************** function _init *****************
   1935 ;; Defined at:
-  1936 ;;		line 156 in file "main.c"
+  1936 ;;		line 142 in file "main.c"
   1937 ;; Parameters:    Size  Location     Type
   1938 ;;		None
   1939 ;; Auto vars:     Size  Location     Type
@@ -1983,7 +1983,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1969                           ; Regs used in _init: [wreg+status,2+status,0]
   1970                           
   1971                           
-  1972                           ;main.c: 157:     OSCCONbits.IRCF = 0b110;
+  1972                           ;main.c: 143:     OSCCONbits.IRCF = 0b110;
   1973  08CB  1683               	bsf	3,5	;RP0=1, select bank1
   1974  08CC  1303               	bcf	3,6	;RP1=0, select bank1
   1975  08CD  080F               	movf	15,w	;volatile
@@ -1992,68 +1992,68 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1978  08D0  008F               	movwf	15	;volatile
   1979  08D1                     l2089:	
   1980                           
-  1981                           ;main.c: 158:     OSCCONbits.SCS = 1;
+  1981                           ;main.c: 144:     OSCCONbits.SCS = 1;
   1982  08D1  140F               	bsf	15,0	;volatile
   1983  08D2                     l2091:	
   1984                           
-  1985                           ;main.c: 159:     TRISB = 0;
+  1985                           ;main.c: 145:     TRISB = 0;
   1986  08D2  0186               	clrf	6	;volatile
   1987  08D3                     l2093:	
   1988                           
-  1989                           ;main.c: 160:     TRISD = 0;
+  1989                           ;main.c: 146:     TRISD = 0;
   1990  08D3  0188               	clrf	8	;volatile
   1991  08D4                     l2095:	
   1992                           
-  1993                           ;main.c: 161:     TRISC = 0;
+  1993                           ;main.c: 147:     TRISC = 0;
   1994  08D4  0187               	clrf	7	;volatile
   1995  08D5                     l2097:	
   1996                           
-  1997                           ;main.c: 162:     TRISAbits.TRISA0 = 1;
+  1997                           ;main.c: 148:     TRISAbits.TRISA0 = 1;
   1998  08D5  1405               	bsf	5,0	;volatile
   1999  08D6                     l2099:	
   2000                           
-  2001                           ;main.c: 163:     TRISAbits.TRISA1 = 1;
+  2001                           ;main.c: 149:     TRISAbits.TRISA1 = 1;
   2002  08D6  1485               	bsf	5,1	;volatile
   2003  08D7                     l2101:	
   2004                           
-  2005                           ;main.c: 164:     ANSELH = 0;
+  2005                           ;main.c: 150:     ANSELH = 0;
   2006  08D7  1683               	bsf	3,5	;RP0=1, select bank3
   2007  08D8  1703               	bsf	3,6	;RP1=1, select bank3
   2008  08D9  0189               	clrf	9	;volatile
   2009  08DA                     l2103:	
   2010                           
-  2011                           ;main.c: 165:     ANSEL = 0b00000011;
+  2011                           ;main.c: 151:     ANSEL = 0b00000011;
   2012  08DA  3003               	movlw	3
   2013  08DB  0088               	movwf	8	;volatile
   2014  08DC                     l2105:	
   2015                           
-  2016                           ;main.c: 166:     PORTA = 0;
+  2016                           ;main.c: 152:     PORTA = 0;
   2017  08DC  1283               	bcf	3,5	;RP0=0, select bank0
   2018  08DD  1303               	bcf	3,6	;RP1=0, select bank0
   2019  08DE  0185               	clrf	5	;volatile
   2020  08DF                     l2107:	
   2021                           
-  2022                           ;main.c: 167:     PORTB = 0;
+  2022                           ;main.c: 153:     PORTB = 0;
   2023  08DF  0186               	clrf	6	;volatile
   2024  08E0                     l2109:	
   2025                           
-  2026                           ;main.c: 168:     PORTC = 0;
+  2026                           ;main.c: 154:     PORTC = 0;
   2027  08E0  0187               	clrf	7	;volatile
   2028  08E1                     l2111:	
   2029                           
-  2030                           ;main.c: 169:     PORTD = 0;
+  2030                           ;main.c: 155:     PORTD = 0;
   2031  08E1  0188               	clrf	8	;volatile
   2032  08E2                     l2113:	
   2033                           
-  2034                           ;main.c: 170:     INTCON=0;
+  2034                           ;main.c: 156:     INTCON=0;
   2035  08E2  018B               	clrf	11	;volatile
   2036  08E3                     l2115:	
   2037                           
-  2038                           ;main.c: 171:     INTCONbits.GIE = 1;
+  2038                           ;main.c: 157:     INTCONbits.GIE = 1;
   2039  08E3  178B               	bsf	11,7	;volatile
   2040  08E4                     l2117:	
   2041                           
-  2042                           ;main.c: 172:     INTCONbits.RBIF = 0;
+  2042                           ;main.c: 158:     INTCONbits.RBIF = 0;
   2043  08E4  100B               	bcf	11,0	;volatile
   2044  08E5                     l103:	
   2045  08E5  0008               	return
@@ -6892,13 +6892,13 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6839  08EE  01FA               	clrf	_adc
   6840  08EF  0AFA               	incf	_adc,f
   6841                           
-  6842                           ;main.c: 66:         PIR1bits.ADIF = 0;
+  6842                           ;main.c: 58:         PIR1bits.ADIF = 0;
   6843  08F0  130C               	bcf	12,6	;volatile
   6844  08F1                     i1l85:	
-  6845                           ;main.c: 68:     }
+  6845                           ;main.c: 60:     }
   6846                           
   6847                           
-  6848                           ;main.c: 70:     if (PIR1bits.RCIF == 1){
+  6848                           ;main.c: 62:     if (PIR1bits.RCIF == 1){
   6849  08F1  1E8C               	btfss	12,5	;volatile
   6850  08F2  28F4               	goto	u338_21
   6851  08F3  28F5               	goto	u338_20
@@ -6907,18 +6907,18 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   6854  08F5                     u338_20:	
   6855  08F5                     i1l2585:	
   6856                           
-  6857                           ;main.c: 71:         datos = RCREG;
+  6857                           ;main.c: 63:         datos = RCREG;
   6858  08F5  081A               	movf	26,w	;volatile
   6859  08F6  00F0               	movwf	??_ISR
   6860  08F7  0870               	movf	??_ISR,w
   6861  08F8  00ED               	movwf	_datos
   6862  08F9                     i1l2587:	
   6863                           
-  6864                           ;main.c: 73:     INTCONbits.GIE = 1;
+  6864                           ;main.c: 65:     INTCONbits.GIE = 1;
   6865  08F9  178B               	bsf	11,7	;volatile
   6866  08FA                     i1l2589:	
   6867                           
-  6868                           ;main.c: 74:     INTCONbits.PEIE = 1;
+  6868                           ;main.c: 66:     INTCONbits.PEIE = 1;
   6869  08FA  170B               	bsf	11,6	;volatile
   6870  08FB                     i1l87:	
   6871  08FB  0872               	movf	??_ISR+2,w
@@ -7226,7 +7226,7 @@ DATA                 0      0      6F      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.10 build 88905656 
-Symbol Table                                                                                   Wed Feb 12 15:33:49 2020
+Symbol Table                                                                                   Wed Feb 12 20:41:02 2020
 
              ___fldiv@aexp 006B               ___fldiv@bexp 006A                          pc 0002  
              ___fldiv@sign 0063                __CFG_CP$OFF 0000                         l92 03D5  

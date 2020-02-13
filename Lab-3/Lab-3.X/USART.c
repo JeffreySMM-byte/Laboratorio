@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "USART.h"
 
-void serial (void){
+void serial (void){         //Funcion de inicializacion de UART
     TRISC = 0x80;
     PIE1bits.RCIE = 0;
     TXSTA = 0b00100110;
@@ -14,7 +14,7 @@ void serial (void){
 
 
 
-void enviar (int dat){
+void enviar (int dat){              //Funcion de envio de datos
     
 //    if(TXSTAbits.TRMT == 0){
 //        

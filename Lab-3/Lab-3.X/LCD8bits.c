@@ -36,7 +36,7 @@ void Lcd_Set_Cursor(uint8_t x, uint8_t y)
 	}
 }
 
-void Lcd_Init(void)
+void Lcd_Init(void)                 //Funcion de inicializacion de la pantalla LCD
 {
   __delay_ms(15);
   Lcd_Cmd(0x030);
@@ -56,8 +56,8 @@ void Lcd_Init(void)
 void Lcd_Write_Char(char a)
 {
    PORTBbits.RB6 = 1;         //RS = 1
-   PORTD = a;             //Data transfer
-   PORTBbits.RB7 = 1;        //Clock para activar el pin E
+   PORTD = a;                 //Data transfer
+   PORTBbits.RB7 = 1;         //Clock para activar el pin E
    __delay_us(40);
    PORTBbits.RB7 = 0;
 }
@@ -70,7 +70,7 @@ void Lcd_Write_String(char *a)
 }
 
 void Lcd_Write_Number(uint8_t var){
-    char str[4];
+    char str[4];                        //Funcion para excribir un numero entero en la pantalla
     sprintf(str, "%d", var);
     Lcd_Write_String(str);
 }

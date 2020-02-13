@@ -54,21 +54,13 @@ void __interrupt() ISR(void){
     INTCONbits.GIE = 0;
     INTCONbits.PEIE = 0;
     if (PIR1bits.ADIF == 1){
-        adc = 1;
-//        if (ADCON0bits.CHS0 == 0){  //Si se utiliza el potenciometro 1 el valor del adc estara en su variable
-//            pot1 = ADRESH;
-//            ADCON0bits.GO_DONE=1;
-//        }
-//        if (ADCON0bits.CHS0 == 1){  //Si se utiliza el potenciometro 2 el valor del adc estara en su variable
-//            pot2 = ADRESH;
-//            ADCON0bits.GO_DONE=1;
-//        }
+        adc = 1;                //Se levanta un bandera cuando el ADC entre a la interrupcion
         PIR1bits.ADIF = 0;
 
     }
     
     if (PIR1bits.RCIF == 1){
-        datos = RCREG;
+        datos = RCREG;          //Se transfieren los datos del RCREG a una variable
     }
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
@@ -77,7 +69,7 @@ void __interrupt() ISR(void){
 void main(void) {
 //    INTCONbits.GIE = 1;
 //    INTCONbits.PEIE = 1;
-    init();
+    init();                     //Se inicializan todas las librerias
     serial();
     Lcd_Init();
     Lcd_Clear();
@@ -89,14 +81,14 @@ void main(void) {
     Lcd_Write_String("CONT");
     
     while(1){
-        ADC1();
-        if(adc == 1){
+        ADC1();                 //Se inicializa el ADC para el puerto A0 y se transfieren los datos 
+        if(adc == 1){           // de ADRESH a una variable 
             pot1 = ADRESH;
             adc = 0;
             ADCON0bits.GO_DONE = 1;
         }
-        pot1 = (pot1)* 5/255;
-        ent1 = pot1;
+        pot1 = (pot1)* 5/255;       //Se realiza un mapeo para los valores del ADRESH y se separa 
+        ent1 = pot1;                //en dos enteros para poder desplegarlos como la parte entera y decimal del voltaje
         deci1 = (pot1 - ent1) * 100;
         dec1 = deci1;
         
@@ -104,17 +96,11 @@ void main(void) {
         Lcd_Write_Number(ent1);
         Lcd_Write_Char(".");
         Lcd_Write_Number(dec1);
-//        if(dec1 >= 10){//escribimos decimal según el caso
-//            Lcd_Write_Number(dec1);
-//        }else{
-//            Lcd_Write_String("0");
-//            Lcd_Write_Number(dec1);
-//        }
-//        __delay_ms(10);
+
                
-        ADC2();
-         if(adc == 1){
-            pot2 = ADRESH;
+        ADC2();                     //Se realiza un mapeo para los valores del ADRESH y se separa 
+         if(adc == 1){              //en dos enteros para poder desplegarlos como la parte entera y decimal del voltaje
+            pot2 = ADRESH;          
             adc = 0;
             ADCON0bits.GO_DONE = 1;
         }
@@ -129,8 +115,8 @@ void main(void) {
         __delay_ms(10);
         
         
-        if (datos == 43 ){
-            cont++;
+        if (datos == 43 ){          //Se reviza que valor de ASCII se envia al PIC para poder sumarle
+            cont++;                 //o restarle al contador 
         } else if (datos == 45){
             cont--;
         }
@@ -138,7 +124,7 @@ void main(void) {
         Lcd_Write_Number(cont);
         
         
-        enviar(ent1);
+        enviar(ent1);           //Se envian los datos a la computadora
         enviar(ent2);
         enviar(dec1);
         enviar(dec2);

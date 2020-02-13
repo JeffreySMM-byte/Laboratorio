@@ -47,9 +47,9 @@
 [v _Lcd_Write_Number Lcd_Write_Number `(v  1 e 1 0 ]
 "53 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-3\Lab-3.X\main.c
 [v _ISR ISR `II(v  1 e 1 0 ]
-"77
+"69
 [v _main main `(v  1 e 1 0 ]
-"156
+"142
 [v _init init `(v  1 e 1 0 ]
 "7 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-3\Lab-3.X\USART.c
 [v _serial serial `(v  1 e 1 0 ]
@@ -233,20 +233,20 @@
 "44
 [v _deci1 deci1 `f  1 e 4 0 ]
 [v _deci2 deci2 `f  1 e 4 0 ]
-"77
+"69
 [v _main main `(v  1 e 1 0 ]
 {
-"150
+"136
 } 0
 "7 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-3\Lab-3.X\USART.c
 [v _serial serial `(v  1 e 1 0 ]
 {
 "13
 } 0
-"156 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-3\Lab-3.X\main.c
+"142 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-3\Lab-3.X\main.c
 [v _init init `(v  1 e 1 0 ]
 {
-"173
+"159
 } 0
 "17 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-3\Lab-3.X\USART.c
 [v _enviar enviar `(v  1 e 1 0 ]
@@ -479,5 +479,5 @@
 "53 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-3\Lab-3.X\main.c
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"75
+"67
 } 0
