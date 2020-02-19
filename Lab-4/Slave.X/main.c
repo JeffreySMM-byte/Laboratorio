@@ -35,18 +35,20 @@
 #include <xc.h>
 #include <stdint.h>
 #include "SPI.h"
+#include "ADC.h"
 //*****************************************************************************
 // Definición de variables
 //*****************************************************************************
 #define _XTAL_FREQ 8000000
-//*****************************************************************************
-// Definición de funciones para que se puedan colocar después del main de lo 
-// contrario hay que colocarlos todas las funciones antes del main
-//*****************************************************************************
+
 void setup(void);
-//*****************************************************************************
-// Código de Interrupción 
-//*****************************************************************************
+
+float pot1 = 0;
+float pot2 = 0; 
+uint8_t adc = 0;
+
+
+
 void __interrupt() isr(void){
    if(SSPIF == 1){
         PORTD = spiRead();
@@ -54,35 +56,37 @@ void __interrupt() isr(void){
         SSPIF = 0;
     }
 }
-//*****************************************************************************
-// Código Principal
-//*****************************************************************************
+
+
 void main(void) {
     setup();
-    //*************************************************************************
-    // Loop infinito
-    //*************************************************************************
+
     while(1){
-       PORTB--;
-       __delay_ms(250);
+        ADC1();                 //Se inicializa el ADC para el puerto A0 y se transfieren los datos 
+        if(adc == 1){           // de ADRESH a una variable 
+            pot1 = ADRESH;
+            adc = 0;
+            ADCON0bits.GO_DONE = 1;
+        }
     }
     return;
 }
-//*****************************************************************************
+
 // Función de Inicialización
-//*****************************************************************************
 void setup(void){
     ANSEL = 0;
     ANSELH = 0;
     
+    TRISAbits.TRISA0 = 1;
+    TRISAbits.TRISA1 = 1;
     TRISB = 0;
     TRISD = 0;
     
+    PORTA = 0;
     PORTB = 0;
     PORTD = 0;
     
-    INTCONbits.GIE = 1;         // Habilitamos interrupciones
-    INTCONbits.PEIE = 1;        // Habilitamos interrupciones PEIE
+    
     PIR1bits.SSPIF = 0;         // Borramos bandera interrupción MSSP
     PIE1bits.SSPIE = 1;         // Habilitamos interrupción MSSP
     TRISAbits.TRISA5 = 1;       // Slave Select
