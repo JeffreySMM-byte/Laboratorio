@@ -3,7 +3,7 @@
  * File:   main.c
  * Author: Pablo
  * Ejemplo de implementación de la comunicación SPI 
- * Código Maestro
+ * Código Esclavo
  * Created on 10 de febrero de 2020, 03:32 PM
  */
 //*****************************************************************************
@@ -44,24 +44,27 @@
 // contrario hay que colocarlos todas las funciones antes del main
 //*****************************************************************************
 void setup(void);
-
+//*****************************************************************************
+// Código de Interrupción 
+//*****************************************************************************
+void __interrupt() isr(void){
+   if(SSPIF == 1){
+        PORTD = spiRead();
+        spiWrite(PORTB);
+        SSPIF = 0;
+    }
+}
 //*****************************************************************************
 // Código Principal
 //*****************************************************************************
 void main(void) {
     setup();
+    //*************************************************************************
+    // Loop infinito
+    //*************************************************************************
     while(1){
-       PORTCbits.RC2 = 0;       //Slave Select
-       __delay_ms(1);
-       
-       spiWrite(PORTB);
-       PORTD = spiRead();
-       
-       __delay_ms(1);
-       PORTCbits.RC2 = 1;       //Slave Deselect 
-       
+       PORTB--;
        __delay_ms(250);
-       PORTB++;
     }
     return;
 }
@@ -71,12 +74,19 @@ void main(void) {
 void setup(void){
     ANSEL = 0;
     ANSELH = 0;
-    TRISC2 = 0;
+    
     TRISB = 0;
     TRISD = 0;
+    
     PORTB = 0;
     PORTD = 0;
-    PORTCbits.RC2 = 1;
-    spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
+    
+    INTCONbits.GIE = 1;         // Habilitamos interrupciones
+    INTCONbits.PEIE = 1;        // Habilitamos interrupciones PEIE
+    PIR1bits.SSPIF = 0;         // Borramos bandera interrupción MSSP
+    PIE1bits.SSPIE = 1;         // Habilitamos interrupción MSSP
+    TRISAbits.TRISA5 = 1;       // Slave Select
+   
+    spiInit(SPI_SLAVE_SS_EN, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 
 }
