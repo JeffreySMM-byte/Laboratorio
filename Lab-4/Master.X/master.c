@@ -11,7 +11,7 @@
 // Palabra de configuración
 //*****************************************************************************
 // CONFIG1
-#pragma config FOSC = EXTRC_NOCLKOUT// Oscillator Selection bits (RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN)
+#pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
 #pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
@@ -38,7 +38,7 @@
 //*****************************************************************************
 // Definición de variables
 //*****************************************************************************
-#define _XTAL_FREQ 8000000
+#define _XTAL_FREQ 4000000
 //*****************************************************************************
 // Definición de funciones para que se puedan colocar después del main de lo 
 // contrario hay que colocarlos todas las funciones antes del main
@@ -50,18 +50,22 @@ void setup(void);
 //*****************************************************************************
 void main(void) {
     setup();
+    //*************************************************************************
+    // Loop infinito
+    //*************************************************************************
     while(1){
        PORTCbits.RC2 = 0;       //Slave Select
        __delay_ms(1);
        
-       spiWrite(PORTB);
+       spiWrite(1);
        PORTD = spiRead();
+       __delay_ms(10);
        
-       __delay_ms(1);
+       spiWrite(2);
+       PORTB = spiRead();
+       __delay_ms(10);
+       
        PORTCbits.RC2 = 1;       //Slave Deselect 
-       
-       __delay_ms(250);
-       PORTB++;
     }
     return;
 }

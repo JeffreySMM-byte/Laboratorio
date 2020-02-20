@@ -8,7 +8,7 @@
 # 2 "<built-in>" 2
 # 1 "main.c" 2
 # 14 "main.c"
-#pragma config FOSC = EXTRC_NOCLKOUT
+#pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
@@ -2704,15 +2704,22 @@ void setup(void);
 float pot1 = 0;
 float pot2 = 0;
 uint8_t adc = 0;
+uint8_t ent1 = 0, ent2 =0, dec1 = 0, dec2 = 0, datos = 0, cont = 0;
+float deci1 = 0, deci2 = 0;
 
 
 
 void __attribute__((picinterrupt(("")))) isr(void){
+# 63 "main.c"
    if(SSPIF == 1){
         PORTD = spiRead();
         spiWrite(PORTB);
         SSPIF = 0;
+# 75 "main.c"
+        SSPIF = 0;
     }
+
+
 }
 
 
@@ -2720,31 +2727,27 @@ void main(void) {
     setup();
 
     while(1){
-        ADC1();
-        if(adc == 1){
-            pot1 = ADRESH;
-            adc = 0;
-            ADCON0bits.GO_DONE = 1;
-        }
+
+         PORTB--;
+       _delay((unsigned long)((250)*(8000000/4000.0)));
+# 111 "main.c"
     }
     return;
 }
 
 
 void setup(void){
-    ANSEL = 0;
     ANSELH = 0;
+    ANSEL = 0;
 
-    TRISAbits.TRISA0 = 1;
-    TRISAbits.TRISA1 = 1;
+
     TRISB = 0;
     TRISD = 0;
 
-    PORTA = 0;
     PORTB = 0;
     PORTD = 0;
-
-
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
     PIR1bits.SSPIF = 0;
     PIE1bits.SSPIE = 1;
     TRISAbits.TRISA5 = 1;

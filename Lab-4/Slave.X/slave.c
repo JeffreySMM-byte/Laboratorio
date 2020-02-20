@@ -11,7 +11,7 @@
 // Palabra de configuración
 //*****************************************************************************
 // CONFIG1
-#pragma config FOSC = EXTRC_NOCLKOUT// Oscillator Selection bits (RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN)
+#pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
 #pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
@@ -39,54 +39,93 @@
 //*****************************************************************************
 // Definición de variables
 //*****************************************************************************
-#define _XTAL_FREQ 8000000
-
+#define _XTAL_FREQ 4000000
+//*****************************************************************************
+// Definición de funciones para que se puedan colocar después del main de lo 
+// contrario hay que colocarlos todas las funciones antes del main
+//*****************************************************************************
 void setup(void);
-
 float pot1 = 0;
-float pot2 = 0; 
-uint8_t adc = 0;
-
-
-
+float pot2 = 0;
+uint8_t adc = 0, adc1 = 0, adc2 = 0, valor = 0;
+uint8_t ent1 = 0, ent2 =0, dec1 = 0, dec2 = 0, datos = 0, cont = 0;
+float deci1 = 0, deci2 = 0;
+//*****************************************************************************
+// Código de Interrupción 
+//*****************************************************************************
 void __interrupt() isr(void){
+    INTCONbits.GIE = 0;
+    INTCONbits.PEIE = 0;
+    
+    if (PIR1bits.ADIF == 1){
+        adc = 1;                //Se levanta un bandera cuando el ADC entre a la interrupcion
+        PIR1bits.ADIF = 0;
+
+    }
+    
    if(SSPIF == 1){
-        PORTD = spiRead();
-        spiWrite(PORTB);
+        valor = spiRead();
+        if(valor == 1){
+            spiWrite(adc1);
+        }
+        if(valor == 2){
+            spiWrite(adc2);
+        }
         SSPIF = 0;
     }
+    
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
 }
-
-
+//*****************************************************************************
+// Código Principal
+//*****************************************************************************
 void main(void) {
     setup();
-
+    
+    //*************************************************************************
+    // Loop infinito
+    //*************************************************************************
     while(1){
-        ADC1();                 //Se inicializa el ADC para el puerto A0 y se transfieren los datos 
+        ADC1();
         if(adc == 1){           // de ADRESH a una variable 
-            pot1 = ADRESH;
+            adc1 = ADRESH;
             adc = 0;
+            PORTD = adc1;
             ADCON0bits.GO_DONE = 1;
         }
+        
+        ADC2();
+        if(adc == 1){           // de ADRESH a una variable 
+            adc2 = ADRESH;
+            adc = 0;
+            PORTB = adc2;
+            ADCON0bits.GO_DONE = 1;
+        }
+        
+  
+        //PORTD = pot1;
+        
+        __delay_ms(10);
+
     }
     return;
 }
-
+//*****************************************************************************
 // Función de Inicialización
+//*****************************************************************************
 void setup(void){
     ANSEL = 0;
     ANSELH = 0;
     
-    TRISAbits.TRISA0 = 1;
-    TRISAbits.TRISA1 = 1;
     TRISB = 0;
     TRISD = 0;
     
-    PORTA = 0;
     PORTB = 0;
     PORTD = 0;
     
-    
+    INTCONbits.GIE = 1;         // Habilitamos interrupciones
+    INTCONbits.PEIE = 1;        // Habilitamos interrupciones PEIE
     PIR1bits.SSPIF = 0;         // Borramos bandera interrupción MSSP
     PIE1bits.SSPIE = 1;         // Habilitamos interrupción MSSP
     TRISAbits.TRISA5 = 1;       // Slave Select

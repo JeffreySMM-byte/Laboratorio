@@ -12,6 +12,7 @@
 void spiInit(Spi_Type sType, Spi_Data_Sample sDataSample, Spi_Clock_Idle sClockIdle, Spi_Transmit_Edge sTransmitEdge)
 {
     TRISC5 = 0;
+    TRISC4 = 1;
     if(sType & 0b00000100) //If Slave Mode
     {
         SSPSTAT = sTransmitEdge;

@@ -17,7 +17,7 @@ label3.grid(row=1)
 label4.grid(row=2)
 label5.grid(row=5)
 entry1.grid(row=6)
-button1.grid(row=6, column=2)
+button1.grid(row=6, column=3)
 
 root.mainloop()
 
