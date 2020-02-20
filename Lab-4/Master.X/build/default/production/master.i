@@ -2735,12 +2735,16 @@ void main(void) {
 
        PORTCbits.RC2 = 1;
 
-
+       if(PORTAbits.RA0){
+           PORTB = adc1;
+       }else{
+           PORTB = adc2;
+       }
 
        enviar(adc1);
        enviar(adc2);
-       enviar(255);
-       PORTB = datos;
+       enviar(193);
+
 
     }
     return;
@@ -2756,6 +2760,7 @@ void setup(void){
     TRISD = 0;
     PORTB = 0;
     PORTD = 0;
+    TRISAbits.TRISA0 = 1;
     PORTCbits.RC2 = 1;
     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 

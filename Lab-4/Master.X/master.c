@@ -85,11 +85,16 @@ void main(void) {
        
        PORTCbits.RC2 = 1;       //Slave Deselect 
        
-      
+//       if(PORTAbits.RA0){
+//           PORTB = adc1;
+//       }else{
+//           PORTB = adc2;
+//       }
+       
        
        enviar(adc1);
        enviar(adc2);
-       enviar(255);
+       enviar(193);
        PORTB = datos;
        
     }

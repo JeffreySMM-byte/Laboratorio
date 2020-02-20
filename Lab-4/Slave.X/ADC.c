@@ -4,6 +4,7 @@
 
 void ADC1(void){                    //Funcion de inicializacion del ADC para el puerto A0
 //while(ADCON0bits.GO_DONE == 1);
+
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
     
