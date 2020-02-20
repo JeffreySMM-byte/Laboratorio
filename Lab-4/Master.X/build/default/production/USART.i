@@ -2829,8 +2829,11 @@ void enviar (int dat);
 
 
 void serial (void){
-    TRISC = 0x80;
-    PIE1bits.RCIE = 0;
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+    TRISCbits.TRISC7 = 1;
+    TRISCbits.TRISC6 = 0;
+    PIE1bits.RCIE = 1;
     TXSTA = 0b00100110;
     RCSTA = 0b10010000;
     BAUDCTLbits.BRG16 = 1;

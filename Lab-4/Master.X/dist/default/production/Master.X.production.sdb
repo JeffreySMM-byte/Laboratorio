@@ -24,7 +24,7 @@ SPI_CLOCK_IDLE_LOW 0
 SPI_IDLE_2_ACTIVE 0
 SPI_ACTIVE_2_IDLE 64
 ]
-"84 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\master.c
+"110 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\master.c
 [e E1292 . `uc
 SPI_MASTER_OSC_DIV4 32
 SPI_MASTER_OSC_DIV16 33
@@ -54,8 +54,10 @@ SPI_ACTIVE_2_IDLE 64
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "51 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\master.c
+[v _isr isr `II(v  1 e 1 0 ]
+"68
 [v _main main `(v  1 e 1 0 ]
-"75
+"101
 [v _setup setup `(v  1 e 1 0 ]
 "12 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\SPI.c
 [v _spiInit spiInit `(v  1 e 1 0 ]
@@ -65,9 +67,13 @@ SPI_ACTIVE_2_IDLE 64
 [v _spiWrite spiWrite `(v  1 e 1 0 ]
 "48
 [v _spiRead spiRead `(uc  1 e 1 0 ]
+"7 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\USART.c
+[v _serial serial `(v  1 e 1 0 ]
+"21
+[v _enviar enviar `(v  1 e 1 0 ]
 "228 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
-[s S264 . 1 `uc 1 RC0 1 0 :1:0 
+[s S371 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -77,10 +83,38 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 RC7 1 0 :1:7 
 ]
 "307
-[u S273 . 1 `S264 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES273  1 e 1 @7 ]
+[u S380 . 1 `S371 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES380  1 e 1 @7 ]
 "352
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
+[s S152 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INTF 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INTE 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"482
+[s S161 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 TMR0IE 1 0 :1:5 
+]
+[u S166 . 1 `S152 1 . 1 0 `S161 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES166  1 e 1 @11 ]
+[s S346 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+`uc 1 CCP1IF 1 0 :1:2 
+`uc 1 SSPIF 1 0 :1:3 
+`uc 1 TXIF 1 0 :1:4 
+`uc 1 RCIF 1 0 :1:5 
+`uc 1 ADIF 1 0 :1:6 
+]
+"553
+[u S354 . 1 `S346 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES354  1 e 1 @12 ]
 "843
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
 "850
@@ -89,13 +123,25 @@ SPI_ACTIVE_2_IDLE 64
 [v _RCSTA RCSTA `VEuc  1 e 1 @24 ]
 "1133
 [v _TXREG TXREG `VEuc  1 e 1 @25 ]
+"1140
+[v _RCREG RCREG `VEuc  1 e 1 @26 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
-"1540
-[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+[s S184 . 1 `uc 1 TRISC0 1 0 :1:0 
+`uc 1 TRISC1 1 0 :1:1 
+`uc 1 TRISC2 1 0 :1:2 
+`uc 1 TRISC3 1 0 :1:3 
+`uc 1 TRISC4 1 0 :1:4 
+`uc 1 TRISC5 1 0 :1:5 
+`uc 1 TRISC6 1 0 :1:6 
+`uc 1 TRISC7 1 0 :1:7 
+]
+"1557
+[u S193 . 1 `S184 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES193  1 e 1 @135 ]
 "1602
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
-[s S153 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S205 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -104,8 +150,8 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 ADIE 1 0 :1:6 
 ]
 "1718
-[u S161 . 1 `S153 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES161  1 e 1 @140 ]
+[u S213 . 1 `S205 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES213  1 e 1 @140 ]
 "2177
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
 [s S43 . 1 `uc 1 BF 1 0 :1:0 
@@ -153,7 +199,7 @@ SPI_ACTIVE_2_IDLE 64
 [v _SSPSTATbits SSPSTATbits `VES83  1 e 1 @148 ]
 "2556
 [v _TXSTA TXSTA `VEuc  1 e 1 @152 ]
-[s S196 . 1 `uc 1 TX9D 1 0 :1:0 
+[s S248 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -163,18 +209,18 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 CSRC 1 0 :1:7 
 ]
 "2582
-[s S205 . 1 `uc 1 TXD8 1 0 :1:0 
+[s S257 . 1 `uc 1 TXD8 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 nTX8 1 0 :1:6 
 ]
-[s S209 . 1 `uc 1 . 1 0 :6:0 
+[s S261 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 TX8_9 1 0 :1:6 
 ]
-[u S212 . 1 `S196 1 . 1 0 `S205 1 . 1 0 `S209 1 . 1 0 ]
-[v _TXSTAbits TXSTAbits `VES212  1 e 1 @152 ]
+[u S264 . 1 `S248 1 . 1 0 `S257 1 . 1 0 `S261 1 . 1 0 ]
+[v _TXSTAbits TXSTAbits `VES264  1 e 1 @152 ]
 "2642
 [v _SPBRG SPBRG `VEuc  1 e 1 @153 ]
-[s S174 . 1 `uc 1 ABDEN 1 0 :1:0 
+[s S226 . 1 `uc 1 ABDEN 1 0 :1:0 
 `uc 1 WUE 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 BRG16 1 0 :1:3 
@@ -184,8 +230,8 @@ SPI_ACTIVE_2_IDLE 64
 `uc 1 ABDOVF 1 0 :1:7 
 ]
 "3352
-[u S183 . 1 `S174 1 . 1 0 ]
-[v _BAUDCTLbits BAUDCTLbits `VES183  1 e 1 @391 ]
+[u S235 . 1 `S226 1 . 1 0 ]
+[v _BAUDCTLbits BAUDCTLbits `VES235  1 e 1 @391 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
@@ -198,10 +244,14 @@ SPI_ACTIVE_2_IDLE 64
 [v _TRISC4 TRISC4 `VEb  1 e 0 @1084 ]
 "4463
 [v _TRISC5 TRISC5 `VEb  1 e 0 @1085 ]
-"51 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\master.c
+"49 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\master.c
+[v _datos datos `uc  1 e 1 0 ]
+[v _adc1 adc1 `uc  1 e 1 0 ]
+[v _adc2 adc2 `uc  1 e 1 0 ]
+"68
 [v _main main `(v  1 e 1 0 ]
 {
-"71
+"97
 } 0
 "35 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\SPI.c
 [v _spiWrite spiWrite `(v  1 e 1 0 ]
@@ -209,7 +259,7 @@ SPI_ACTIVE_2_IDLE 64
 [v spiWrite@dat dat `uc  1 a 1 wreg ]
 [v spiWrite@dat dat `uc  1 a 1 wreg ]
 "37
-[v spiWrite@dat dat `uc  1 a 1 0 ]
+[v spiWrite@dat dat `uc  1 a 1 3 ]
 "38
 } 0
 "48
@@ -222,20 +272,36 @@ SPI_ACTIVE_2_IDLE 64
 {
 "33
 } 0
-"75 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\master.c
+"101 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\master.c
 [v _setup setup `(v  1 e 1 0 ]
 {
-"86
+"112
 } 0
 "12 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\SPI.c
 [v _spiInit spiInit `(v  1 e 1 0 ]
 {
 [v spiInit@sType sType `E1264  1 a 1 wreg ]
 [v spiInit@sType sType `E1264  1 a 1 wreg ]
-[v spiInit@sDataSample sDataSample `E1272  1 p 1 0 ]
-[v spiInit@sClockIdle sClockIdle `E1276  1 p 1 1 ]
-[v spiInit@sTransmitEdge sTransmitEdge `E1280  1 p 1 2 ]
+[v spiInit@sDataSample sDataSample `E1272  1 p 1 3 ]
+[v spiInit@sClockIdle sClockIdle `E1276  1 p 1 4 ]
+[v spiInit@sTransmitEdge sTransmitEdge `E1280  1 p 1 5 ]
 "14
-[v spiInit@sType sType `E1264  1 a 1 3 ]
+[v spiInit@sType sType `E1264  1 a 1 6 ]
 "28
+} 0
+"7 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\USART.c
+[v _serial serial `(v  1 e 1 0 ]
+{
+"17
+} 0
+"21
+[v _enviar enviar `(v  1 e 1 0 ]
+{
+[v enviar@dat dat `i  1 p 2 3 ]
+"31
+} 0
+"51 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\master.c
+[v _isr isr `II(v  1 e 1 0 ]
+{
+"62
 } 0

@@ -7,8 +7,9 @@
 void serial (void){         //Funcion de inicializacion de UART
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
-    TRISC = 0x80;
-    PIE1bits.RCIE = 0;
+    TRISCbits.TRISC7 = 1;
+    TRISCbits.TRISC6 = 0;
+    PIE1bits.RCIE = 1;
     TXSTA = 0b00100110;
     RCSTA = 0b10010000;
     BAUDCTLbits.BRG16 = 1; //BaudrateHigh

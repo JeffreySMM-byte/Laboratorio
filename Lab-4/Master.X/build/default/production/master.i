@@ -2687,14 +2687,37 @@ void spiWrite(char);
 unsigned spiDataReady();
 char spiRead();
 # 37 "master.c" 2
-# 46 "master.c"
+
+# 1 "./USART.h" 1
+# 36 "./USART.h"
+void serial (void);
+void enviar (int dat);
+# 38 "master.c" 2
+# 47 "master.c"
 void setup(void);
+
+uint8_t datos = 0, adc1 = 0, adc2 = 0;
+
+void __attribute__((picinterrupt(("")))) isr(void){
+    INTCONbits.GIE = 0;
+    INTCONbits.PEIE = 0;
+
+    if (PIR1bits.RCIF == 1){
+        datos = RCREG;
+    }
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+
+
+}
+
 
 
 
 
 void main(void) {
     setup();
+    serial();
 
 
 
@@ -2703,14 +2726,22 @@ void main(void) {
        _delay((unsigned long)((1)*(4000000/4000.0)));
 
        spiWrite(1);
-       PORTD = spiRead();
+       adc1 = spiRead();
        _delay((unsigned long)((10)*(4000000/4000.0)));
 
        spiWrite(2);
-       PORTB = spiRead();
+       adc2 = spiRead();
        _delay((unsigned long)((10)*(4000000/4000.0)));
 
        PORTCbits.RC2 = 1;
+
+
+
+       enviar(adc1);
+       enviar(adc2);
+       enviar(255);
+       PORTB = datos;
+
     }
     return;
 }

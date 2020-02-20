@@ -23,7 +23,7 @@
 #pragma config LVP = OFF        // Low Voltage Programming Enable bit (RB3 pin has digital I/O, HV on MCLR must be used for programming)
 
 // CONFIG2
-#pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
+#pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-o ut Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
 // #pragma config statements should precede project file includes.
@@ -35,6 +35,7 @@
 #include <xc.h>
 #include <stdint.h>
 #include "SPI.h"
+#include "USART.h"
 //*****************************************************************************
 // Definición de variables
 //*****************************************************************************
@@ -45,11 +46,28 @@
 //*****************************************************************************
 void setup(void);
 
+uint8_t datos = 0, adc1 = 0, adc2 = 0;
+
+void __interrupt() isr(void){
+    INTCONbits.GIE = 0;
+    INTCONbits.PEIE = 0;
+    
+    if (PIR1bits.RCIF == 1){
+        datos = RCREG;          //Se transfieren los datos del RCREG a una variable
+    }
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+    
+    
+}
+
+
 //*****************************************************************************
 // Código Principal
 //*****************************************************************************
 void main(void) {
     setup();
+    serial();
     //*************************************************************************
     // Loop infinito
     //*************************************************************************
@@ -58,14 +76,22 @@ void main(void) {
        __delay_ms(1);
        
        spiWrite(1);
-       PORTD = spiRead();
+       adc1 = spiRead();
        __delay_ms(10);
        
        spiWrite(2);
-       PORTB = spiRead();
+       adc2 = spiRead();
        __delay_ms(10);
        
        PORTCbits.RC2 = 1;       //Slave Deselect 
+       
+      
+       
+       enviar(adc1);
+       enviar(adc2);
+       enviar(255);
+       PORTB = datos;
+       
     }
     return;
 }

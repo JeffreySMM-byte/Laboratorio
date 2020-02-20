@@ -1,5 +1,20 @@
 import serial
 from tkinter import*
+import struct
+import time
+
+
+serialPort = serial.Serial(port = "COM4", baudrate=9600, bytesize=8, timeout=2, stopbits=serial.STOPBITS_ONE)
+
+
+while(1):
+    if(serialPort.in_waiting > 0):
+
+        serialString = serialPort.readline()
+        print(serialString.decode('Ascii'))
+        serialPort.write(b"Thank you for sending data \r\n")
+
+
 
 root = Tk()
 
@@ -22,12 +37,4 @@ button1.grid(row=6, column=3)
 root.mainloop()
 
 
-#serialPort = serial.Serial(port = "COM4", baudrate=9600, bytesize=8, timeout=2, stopbits=serial.STOPBITS_ONE)
 
-
-#while(1):
- #   if(serialPort.in_waiting > 0):
-
-  #      serialString = serialPort.readline()
-   #     print(serialString.decode('Ascii'))
-    #    serialPort.write(b"Thank you for sending data \r\n")
