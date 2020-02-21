@@ -2638,6 +2638,7 @@ void ADC2(void);
 
 void ADC1(void){
 
+
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
 

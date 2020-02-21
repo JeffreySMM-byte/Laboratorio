@@ -93,7 +93,9 @@ void main(void) {
        
        
        enviar(adc1);
+       __delay_ms(5);
        enviar(adc2);
+       __delay_ms(5);
        enviar(193);
        PORTB = datos;
        

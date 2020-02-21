@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.10 build 88905656 
-                                                                                               Wed Feb 19 19:55:00 2020
+                                                                                               Thu Feb 20 13:30:25 2020
 
 Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1 
      1                           	processor	16F887
@@ -904,7 +904,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
    888  00D3                     __ptext3:	
    889 ;; *************** function _ADC2 *****************
    890 ;; Defined at:
-   891 ;;		line 27 in file "ADC.c"
+   891 ;;		line 28 in file "ADC.c"
    892 ;; Parameters:    Size  Location     Type
    893 ;;		None
    894 ;; Auto vars:     Size  Location     Type
@@ -940,14 +940,14 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
    924                           ; Regs used in _ADC2: [wreg+status,2+status,0]
    925                           
    926                           
-   927                           ;ADC.c: 29:     INTCONbits.GIE = 1;
+   927                           ;ADC.c: 30:     INTCONbits.GIE = 1;
    928  00D3  178B               	bsf	11,7	;volatile
    929                           
-   930                           ;ADC.c: 30:     INTCONbits.PEIE = 1;
+   930                           ;ADC.c: 31:     INTCONbits.PEIE = 1;
    931  00D4  170B               	bsf	11,6	;volatile
    932  00D5                     l782:	
    933                           
-   934                           ;ADC.c: 31:     ADCON0bits.ADCS=01;
+   934                           ;ADC.c: 32:     ADCON0bits.ADCS=01;
    935  00D5  1283               	bcf	3,5	;RP0=0, select bank0
    936  00D6  1303               	bcf	3,6	;RP1=0, select bank0
    937  00D7  081F               	movf	31,w	;volatile
@@ -956,51 +956,51 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
    940  00DA  009F               	movwf	31	;volatile
    941  00DB                     l784:	
    942                           
-   943                           ;ADC.c: 32:     ADCON0bits.CHS0=1;
+   943                           ;ADC.c: 33:     ADCON0bits.CHS0=1;
    944  00DB  151F               	bsf	31,2	;volatile
    945  00DC                     l786:	
    946                           
-   947                           ;ADC.c: 33:     ADCON0bits.CHS1=0;
+   947                           ;ADC.c: 34:     ADCON0bits.CHS1=0;
    948  00DC  119F               	bcf	31,3	;volatile
    949  00DD                     l788:	
    950                           
-   951                           ;ADC.c: 34:     ADCON0bits.CHS2=0;
+   951                           ;ADC.c: 35:     ADCON0bits.CHS2=0;
    952  00DD  121F               	bcf	31,4	;volatile
    953  00DE                     l790:	
    954                           
-   955                           ;ADC.c: 35:     ADCON0bits.CHS3=0;
+   955                           ;ADC.c: 36:     ADCON0bits.CHS3=0;
    956  00DE  129F               	bcf	31,5	;volatile
    957  00DF                     l792:	
    958                           
-   959                           ;ADC.c: 36:     ADCON0bits.ADON=1;
+   959                           ;ADC.c: 37:     ADCON0bits.ADON=1;
    960  00DF  141F               	bsf	31,0	;volatile
    961  00E0                     l794:	
    962                           
-   963                           ;ADC.c: 37:     ADCON1bits.ADFM=0;
+   963                           ;ADC.c: 38:     ADCON1bits.ADFM=0;
    964  00E0  1683               	bsf	3,5	;RP0=1, select bank1
    965  00E1  1303               	bcf	3,6	;RP1=0, select bank1
    966  00E2  139F               	bcf	31,7	;volatile
    967  00E3                     l796:	
    968                           
-   969                           ;ADC.c: 38:     ADCON1bits.VCFG0=0;
+   969                           ;ADC.c: 39:     ADCON1bits.VCFG0=0;
    970  00E3  121F               	bcf	31,4	;volatile
    971  00E4                     l798:	
    972                           
-   973                           ;ADC.c: 39:     ADCON1bits.VCFG1=0;
+   973                           ;ADC.c: 40:     ADCON1bits.VCFG1=0;
    974  00E4  129F               	bcf	31,5	;volatile
    975  00E5                     l800:	
    976                           
-   977                           ;ADC.c: 40:     PIE1bits.ADIE=1;
+   977                           ;ADC.c: 41:     PIE1bits.ADIE=1;
    978  00E5  170C               	bsf	12,6	;volatile
    979  00E6                     l802:	
    980                           
-   981                           ;ADC.c: 41:     PIR1bits.ADIF=0;
+   981                           ;ADC.c: 42:     PIR1bits.ADIF=0;
    982  00E6  1283               	bcf	3,5	;RP0=0, select bank0
    983  00E7  1303               	bcf	3,6	;RP1=0, select bank0
    984  00E8  130C               	bcf	12,6	;volatile
    985  00E9                     l804:	
    986                           
-   987                           ;ADC.c: 43:     ADCON0bits.GO_DONE=1;
+   987                           ;ADC.c: 44:     ADCON0bits.GO_DONE=1;
    988  00E9  149F               	bsf	31,1	;volatile
    989  00EA                     l52:	
    990  00EA  0008               	return
@@ -1046,14 +1046,14 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1030                           ; Regs used in _ADC1: [wreg+status,2+status,0]
   1031                           
   1032                           
-  1033                           ;ADC.c: 7:     INTCONbits.GIE = 1;
+  1033                           ;ADC.c: 8:     INTCONbits.GIE = 1;
   1034  00EB  178B               	bsf	11,7	;volatile
   1035                           
-  1036                           ;ADC.c: 8:     INTCONbits.PEIE = 1;
+  1036                           ;ADC.c: 9:     INTCONbits.PEIE = 1;
   1037  00EC  170B               	bsf	11,6	;volatile
   1038  00ED                     l756:	
   1039                           
-  1040                           ;ADC.c: 10:     ADCON0bits.ADCS=01;
+  1040                           ;ADC.c: 11:     ADCON0bits.ADCS=01;
   1041  00ED  1283               	bcf	3,5	;RP0=0, select bank0
   1042  00EE  1303               	bcf	3,6	;RP1=0, select bank0
   1043  00EF  081F               	movf	31,w	;volatile
@@ -1062,51 +1062,51 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
   1046  00F2  009F               	movwf	31	;volatile
   1047  00F3                     l758:	
   1048                           
-  1049                           ;ADC.c: 11:     ADCON0bits.CHS0=0;
+  1049                           ;ADC.c: 12:     ADCON0bits.CHS0=0;
   1050  00F3  111F               	bcf	31,2	;volatile
   1051  00F4                     l760:	
   1052                           
-  1053                           ;ADC.c: 12:     ADCON0bits.CHS1=0;
+  1053                           ;ADC.c: 13:     ADCON0bits.CHS1=0;
   1054  00F4  119F               	bcf	31,3	;volatile
   1055  00F5                     l762:	
   1056                           
-  1057                           ;ADC.c: 13:     ADCON0bits.CHS2=0;
+  1057                           ;ADC.c: 14:     ADCON0bits.CHS2=0;
   1058  00F5  121F               	bcf	31,4	;volatile
   1059  00F6                     l764:	
   1060                           
-  1061                           ;ADC.c: 14:     ADCON0bits.CHS3=0;
+  1061                           ;ADC.c: 15:     ADCON0bits.CHS3=0;
   1062  00F6  129F               	bcf	31,5	;volatile
   1063  00F7                     l766:	
   1064                           
-  1065                           ;ADC.c: 15:     ADCON0bits.ADON=1;
+  1065                           ;ADC.c: 16:     ADCON0bits.ADON=1;
   1066  00F7  141F               	bsf	31,0	;volatile
   1067  00F8                     l768:	
   1068                           
-  1069                           ;ADC.c: 16:     ADCON1bits.ADFM=0;
+  1069                           ;ADC.c: 17:     ADCON1bits.ADFM=0;
   1070  00F8  1683               	bsf	3,5	;RP0=1, select bank1
   1071  00F9  1303               	bcf	3,6	;RP1=0, select bank1
   1072  00FA  139F               	bcf	31,7	;volatile
   1073  00FB                     l770:	
   1074                           
-  1075                           ;ADC.c: 17:     ADCON1bits.VCFG0=0;
+  1075                           ;ADC.c: 18:     ADCON1bits.VCFG0=0;
   1076  00FB  121F               	bcf	31,4	;volatile
   1077  00FC                     l772:	
   1078                           
-  1079                           ;ADC.c: 18:     ADCON1bits.VCFG1=0;
+  1079                           ;ADC.c: 19:     ADCON1bits.VCFG1=0;
   1080  00FC  129F               	bcf	31,5	;volatile
   1081  00FD                     l774:	
   1082                           
-  1083                           ;ADC.c: 19:     PIE1bits.ADIE=1;
+  1083                           ;ADC.c: 20:     PIE1bits.ADIE=1;
   1084  00FD  170C               	bsf	12,6	;volatile
   1085  00FE                     l776:	
   1086                           
-  1087                           ;ADC.c: 20:     PIR1bits.ADIF=0;
+  1087                           ;ADC.c: 21:     PIR1bits.ADIF=0;
   1088  00FE  1283               	bcf	3,5	;RP0=0, select bank0
   1089  00FF  1303               	bcf	3,6	;RP1=0, select bank0
   1090  0100  130C               	bcf	12,6	;volatile
   1091  0101                     l778:	
   1092                           
-  1093                           ;ADC.c: 24:     ADCON0bits.GO_DONE=1;
+  1093                           ;ADC.c: 25:     ADCON0bits.GO_DONE=1;
   1094  0101  149F               	bsf	31,1	;volatile
   1095  0102                     l49:	
   1096  0102  0008               	return
@@ -1562,7 +1562,7 @@ DATA                 0      0      24      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.10 build 88905656 
-Symbol Table                                                                                   Wed Feb 19 19:55:00 2020
+Symbol Table                                                                                   Thu Feb 20 13:30:25 2020
 
              __CFG_CP$OFF 0000               _SSPSTATbits 0094                        l18 00CD  
                       l19 00D2                        l52 00EA                        l49 0102  

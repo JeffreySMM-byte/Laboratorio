@@ -2734,17 +2734,13 @@ void main(void) {
        _delay((unsigned long)((10)*(4000000/4000.0)));
 
        PORTCbits.RC2 = 1;
-
-       if(PORTAbits.RA0){
-           PORTB = adc1;
-       }else{
-           PORTB = adc2;
-       }
-
+# 95 "master.c"
        enviar(adc1);
+       _delay((unsigned long)((5)*(4000000/4000.0)));
        enviar(adc2);
+       _delay((unsigned long)((5)*(4000000/4000.0)));
        enviar(193);
-
+       PORTB = datos;
 
     }
     return;
@@ -2760,7 +2756,6 @@ void setup(void){
     TRISD = 0;
     PORTB = 0;
     PORTD = 0;
-    TRISAbits.TRISA0 = 1;
     PORTCbits.RC2 = 1;
     spiInit(SPI_MASTER_OSC_DIV4, SPI_DATA_SAMPLE_MIDDLE, SPI_CLOCK_IDLE_LOW, SPI_IDLE_2_ACTIVE);
 

@@ -24,7 +24,7 @@ SPI_CLOCK_IDLE_LOW 0
 SPI_IDLE_2_ACTIVE 0
 SPI_ACTIVE_2_IDLE 64
 ]
-"115 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\master.c
+"117 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\master.c
 [e E1292 . `uc
 SPI_MASTER_OSC_DIV4 32
 SPI_MASTER_OSC_DIV16 33
@@ -57,7 +57,7 @@ SPI_ACTIVE_2_IDLE 64
 [v _isr isr `II(v  1 e 1 0 ]
 "68
 [v _main main `(v  1 e 1 0 ]
-"105
+"108
 [v _setup setup `(v  1 e 1 0 ]
 "12 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\SPI.c
 [v _spiInit spiInit `(v  1 e 1 0 ]
@@ -71,19 +71,7 @@ SPI_ACTIVE_2_IDLE 64
 [v _serial serial `(v  1 e 1 0 ]
 "21
 [v _enviar enviar `(v  1 e 1 0 ]
-[s S400 . 1 `uc 1 RA0 1 0 :1:0 
-`uc 1 RA1 1 0 :1:1 
-`uc 1 RA2 1 0 :1:2 
-`uc 1 RA3 1 0 :1:3 
-`uc 1 RA4 1 0 :1:4 
-`uc 1 RA5 1 0 :1:5 
-`uc 1 RA6 1 0 :1:6 
-`uc 1 RA7 1 0 :1:7 
-]
-"183 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
-[u S409 . 1 `S400 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES409  1 e 1 @5 ]
-"228
+"228 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
 [s S371 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
@@ -137,18 +125,6 @@ SPI_ACTIVE_2_IDLE 64
 [v _TXREG TXREG `VEuc  1 e 1 @25 ]
 "1140
 [v _RCREG RCREG `VEuc  1 e 1 @26 ]
-[s S429 . 1 `uc 1 TRISA0 1 0 :1:0 
-`uc 1 TRISA1 1 0 :1:1 
-`uc 1 TRISA2 1 0 :1:2 
-`uc 1 TRISA3 1 0 :1:3 
-`uc 1 TRISA4 1 0 :1:4 
-`uc 1 TRISA5 1 0 :1:5 
-`uc 1 TRISA6 1 0 :1:6 
-`uc 1 TRISA7 1 0 :1:7 
-]
-"1433
-[u S438 . 1 `S429 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES438  1 e 1 @133 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
 [s S184 . 1 `uc 1 TRISC0 1 0 :1:0 
@@ -275,7 +251,7 @@ SPI_ACTIVE_2_IDLE 64
 "68
 [v _main main `(v  1 e 1 0 ]
 {
-"101
+"104
 } 0
 "35 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\SPI.c
 [v _spiWrite spiWrite `(v  1 e 1 0 ]
@@ -296,10 +272,10 @@ SPI_ACTIVE_2_IDLE 64
 {
 "33
 } 0
-"105 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\master.c
+"108 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\master.c
 [v _setup setup `(v  1 e 1 0 ]
 {
-"117
+"119
 } 0
 "12 C:\Users\jeffr\Documents\GitHub\Laboratorio\Laboratorio\Lab-4\Master.X\SPI.c
 [v _spiInit spiInit `(v  1 e 1 0 ]
