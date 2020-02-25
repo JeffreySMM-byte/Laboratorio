@@ -32,13 +32,14 @@
 #include <stdint.h>
 #include <pic16f887.h>
 #include "I2C.h"
+#include"ADC.h"
 #include <xc.h>
 //*****************************************************************************
 // Definición de variables
 //*****************************************************************************
 #define _XTAL_FREQ 4000000
 uint8_t z;
-uint8_t dato;
+uint8_t dato = 0, adc = 0, adc1 = 0;
 //*****************************************************************************
 // Definición de funciones para que se puedan colocar después del main de lo 
 // contrario hay que colocarlos todas las funciones antes del main
@@ -48,6 +49,15 @@ void setup(void);
 // Código de Interrupción 
 //*****************************************************************************
 void __interrupt() isr(void){
+    
+    INTCONbits.GIE = 0;
+    INTCONbits.PEIE = 0;
+    
+    if (PIR1bits.ADIF == 1){
+        adc = 1;                //Se levanta un bandera cuando el ADC entre a la interrupcion
+        PIR1bits.ADIF = 0;
+    }
+    
    if(PIR1bits.SSPIF == 1){ 
 
         SSPCONbits.CKP = 0;
@@ -80,7 +90,10 @@ void __interrupt() isr(void){
        
         PIR1bits.SSPIF = 0;    
     }
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
 }
+
 //*****************************************************************************
 // Main
 //*****************************************************************************
@@ -90,7 +103,13 @@ void main(void) {
     // Loop infinito
     //*************************************************************************
     while(1){
-        PORTB = ~PORTB;
+        ADC1();
+        if(adc == 1){           // de ADRESH a una variable 
+            adc1 = ADRESH;
+            adc = 0;
+            PORTB = adc1;
+            ADCON0bits.GO_DONE = 1;
+        }
        __delay_ms(500);
     }
     return;
@@ -101,10 +120,10 @@ void main(void) {
 void setup(void){
     ANSEL = 0;
     ANSELH = 0;
-    
+    TRISAbits.TRISA0 = 1;
     TRISB = 0;
     TRISD = 0;
-    
+    PORTA = 0;
     PORTB = 0;
     PORTD = 0;
     I2C_Slave_Init(0x50);   

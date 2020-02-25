@@ -10,6 +10,7 @@
  * Basado en Link: http://microcontroladores-mrelberni.com/i2c-pic-comunicacion-serial/
  */
 #include "I2C.h"
+#include <stdint.h>
 //*****************************************************************************
 // Función para inicializar I2C Maestro
 //*****************************************************************************
