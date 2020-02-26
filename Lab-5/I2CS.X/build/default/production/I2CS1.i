@@ -2773,12 +2773,10 @@ void main(void) {
     while(1){
         ADC1();
         if(adc == 1){
-            adc1 = ADRESH;
+            PORTB = ADRESH;
             adc = 0;
-            PORTB = adc1;
             ADCON0bits.GO_DONE = 1;
         }
-       _delay((unsigned long)((500)*(4000000/4000.0)));
     }
     return;
 }
@@ -2786,7 +2784,7 @@ void main(void) {
 
 
 void setup(void){
-    ANSEL = 0;
+    ANSEL = 0b00000001;
     ANSELH = 0;
     TRISAbits.TRISA0 = 1;
     TRISB = 0;

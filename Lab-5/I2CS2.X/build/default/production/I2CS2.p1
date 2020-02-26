@@ -104,9 +104,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3641 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 3641: extern volatile __bit BF __attribute__((address(0x4A0)));
 [v _BF `Vb ~T0 @X0 0 e@1184 ]
-"228
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 228: extern volatile unsigned char PORTB __attribute__((address(0x006)));
-[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
 [p mainexit ]
 "46 I2CS2.c
 [; ;I2CS2.c: 46: void setup(void);
@@ -149,6 +146,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1602
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1602: extern volatile unsigned char TRISD __attribute__((address(0x088)));
 [v _TRISD `Vuc ~T0 @X0 0 e@136 ]
+"228
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 228: extern volatile unsigned char PORTB __attribute__((address(0x006)));
+[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
 "64 ./I2C.h
 [; ;./I2C.h: 64: void I2C_Slave_Init(uint8_t address);
 [v _I2C_Slave_Init `(v ~T0 @X0 0 ef1`uc ]
@@ -428,8 +428,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! == -> . . _INTCONbits 0 0 `i -> 1 `i 139  ]
 {
 "53
-[; ;I2CS2.c: 53:         if (PORTBbits.RB0 == 1){
-[e $ ! == -> . . _PORTBbits 0 0 `i -> 1 `i 140  ]
+[; ;I2CS2.c: 53:         if (PORTBbits.RB1 == 1){
+[e $ ! == -> . . _PORTBbits 0 1 `i -> 1 `i 140  ]
 {
 "54
 [; ;I2CS2.c: 54:             PORTA++;
@@ -450,202 +450,208 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 141 ]
 "59
-[; ;I2CS2.c: 59:         if (PORTBbits.RB1 == 1){
-[e $ ! == -> . . _PORTBbits 0 1 `i -> 1 `i 142  ]
+[; ;I2CS2.c: 59:         if (PORTBbits.RB0 == 1){
+[e $ ! == -> . . _PORTBbits 0 0 `i -> 1 `i 142  ]
 {
 "60
-[; ;I2CS2.c: 60:             PORTA--;
-[e -- _PORTA -> -> 1 `i `Vuc ]
-"61
-[; ;I2CS2.c: 61:         } else if (PORTA == 0){
-}
-[e $U 143  ]
-[e :U 142 ]
-[e $ ! == -> _PORTA `i -> 0 `i 144  ]
+[; ;I2CS2.c: 60:             if(PORTA == 0){
+[e $ ! == -> _PORTA `i -> 0 `i 143  ]
 {
-"62
-[; ;I2CS2.c: 62:             PORTA = 15;
+"61
+[; ;I2CS2.c: 61:                 PORTA = 15;
 [e = _PORTA -> -> 15 `i `uc ]
+"62
+[; ;I2CS2.c: 62:             } else {
+}
+[e $U 144  ]
+[e :U 143 ]
+{
 "63
-[; ;I2CS2.c: 63:         }
+[; ;I2CS2.c: 63:                 PORTA--;
+[e -- _PORTA -> -> 1 `i `Vuc ]
+"64
+[; ;I2CS2.c: 64:             }
 }
 [e :U 144 ]
-[e :U 143 ]
-"64
-[; ;I2CS2.c: 64:         INTCONbits.RBIF = 0;
+"66
+[; ;I2CS2.c: 66:         }
+}
+[e :U 142 ]
+"68
+[; ;I2CS2.c: 68:         INTCONbits.RBIF = 0;
 [e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
-"65
-[; ;I2CS2.c: 65:        }
+"69
+[; ;I2CS2.c: 69:        }
 }
 [e :U 139 ]
-"68
-[; ;I2CS2.c: 68:    if(PIR1bits.SSPIF == 1){
+"72
+[; ;I2CS2.c: 72:    if(PIR1bits.SSPIF == 1){
 [e $ ! == -> . . _PIR1bits 0 3 `i -> 1 `i 145  ]
 {
-"70
-[; ;I2CS2.c: 70:         SSPCONbits.CKP = 0;
+"74
+[; ;I2CS2.c: 74:         SSPCONbits.CKP = 0;
 [e = . . _SSPCONbits 0 1 -> -> 0 `i `uc ]
-"72
-[; ;I2CS2.c: 72:         if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
+"76
+[; ;I2CS2.c: 76:         if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
 [e $ ! || != -> . . _SSPCONbits 0 3 `i -> 0 `i != -> . . _SSPCONbits 0 4 `i -> 0 `i 146  ]
 {
-"73
-[; ;I2CS2.c: 73:             z = SSPBUF;
-[e = _z _SSPBUF ]
-"74
-[; ;I2CS2.c: 74:             SSPCONbits.SSPOV = 0;
-[e = . . _SSPCONbits 0 3 -> -> 0 `i `uc ]
-"75
-[; ;I2CS2.c: 75:             SSPCONbits.WCOL = 0;
-[e = . . _SSPCONbits 0 4 -> -> 0 `i `uc ]
-"76
-[; ;I2CS2.c: 76:             SSPCONbits.CKP = 1;
-[e = . . _SSPCONbits 0 1 -> -> 1 `i `uc ]
 "77
-[; ;I2CS2.c: 77:         }
+[; ;I2CS2.c: 77:             z = SSPBUF;
+[e = _z _SSPBUF ]
+"78
+[; ;I2CS2.c: 78:             SSPCONbits.SSPOV = 0;
+[e = . . _SSPCONbits 0 3 -> -> 0 `i `uc ]
+"79
+[; ;I2CS2.c: 79:             SSPCONbits.WCOL = 0;
+[e = . . _SSPCONbits 0 4 -> -> 0 `i `uc ]
+"80
+[; ;I2CS2.c: 80:             SSPCONbits.CKP = 1;
+[e = . . _SSPCONbits 0 1 -> -> 1 `i `uc ]
+"81
+[; ;I2CS2.c: 81:         }
 }
 [e :U 146 ]
-"79
-[; ;I2CS2.c: 79:         if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
+"83
+[; ;I2CS2.c: 83:         if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
 [e $ ! && ! != -> . . _SSPSTATbits 0 5 `i -> 0 `i ! != -> . . _SSPSTATbits 0 2 `i -> 0 `i 147  ]
 {
-"81
-[; ;I2CS2.c: 81:             z = SSPBUF;
-[e = _z _SSPBUF ]
-"83
-[; ;I2CS2.c: 83:             PIR1bits.SSPIF = 0;
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-"84
-[; ;I2CS2.c: 84:             SSPCONbits.CKP = 1;
-[e = . . _SSPCONbits 0 1 -> -> 1 `i `uc ]
 "85
-[; ;I2CS2.c: 85:             while(!SSPSTATbits.BF);
+[; ;I2CS2.c: 85:             z = SSPBUF;
+[e = _z _SSPBUF ]
+"87
+[; ;I2CS2.c: 87:             PIR1bits.SSPIF = 0;
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+"88
+[; ;I2CS2.c: 88:             SSPCONbits.CKP = 1;
+[e = . . _SSPCONbits 0 1 -> -> 1 `i `uc ]
+"89
+[; ;I2CS2.c: 89:             while(!SSPSTATbits.BF);
 [e $U 148  ]
 [e :U 149 ]
 [e :U 148 ]
 [e $ ! != -> . . _SSPSTATbits 0 0 `i -> 0 `i 149  ]
 [e :U 150 ]
-"86
-[; ;I2CS2.c: 86:             PORTD = SSPBUF;
+"90
+[; ;I2CS2.c: 90:             PORTD = SSPBUF;
 [e = _PORTD _SSPBUF ]
-"87
-[; ;I2CS2.c: 87:             _delay((unsigned long)((250)*(4000000/4000000.0)));
+"91
+[; ;I2CS2.c: 91:             _delay((unsigned long)((250)*(4000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 250 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
-"89
-[; ;I2CS2.c: 89:         }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
+"93
+[; ;I2CS2.c: 93:         }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
 }
 [e $U 151  ]
 [e :U 147 ]
 [e $ ! && ! != -> . . _SSPSTATbits 0 5 `i -> 0 `i != -> . . _SSPSTATbits 0 2 `i -> 0 `i 152  ]
 {
-"90
-[; ;I2CS2.c: 90:             z = SSPBUF;
-[e = _z _SSPBUF ]
-"91
-[; ;I2CS2.c: 91:             BF = 0;
-[e = _BF -> -> 0 `i `b ]
-"92
-[; ;I2CS2.c: 92:             SSPBUF = PORTB;
-[e = _SSPBUF _PORTB ]
-"93
-[; ;I2CS2.c: 93:             SSPCONbits.CKP = 1;
-[e = . . _SSPCONbits 0 1 -> -> 1 `i `uc ]
 "94
-[; ;I2CS2.c: 94:             _delay((unsigned long)((250)*(4000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
+[; ;I2CS2.c: 94:             z = SSPBUF;
+[e = _z _SSPBUF ]
 "95
-[; ;I2CS2.c: 95:             while(SSPSTATbits.BF);
+[; ;I2CS2.c: 95:             BF = 0;
+[e = _BF -> -> 0 `i `b ]
+"96
+[; ;I2CS2.c: 96:             SSPBUF = PORTA;
+[e = _SSPBUF _PORTA ]
+"97
+[; ;I2CS2.c: 97:             SSPCONbits.CKP = 1;
+[e = . . _SSPCONbits 0 1 -> -> 1 `i `uc ]
+"98
+[; ;I2CS2.c: 98:             _delay((unsigned long)((250)*(4000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
+"99
+[; ;I2CS2.c: 99:             while(SSPSTATbits.BF);
 [e $U 153  ]
 [e :U 154 ]
 [e :U 153 ]
 [e $ != -> . . _SSPSTATbits 0 0 `i -> 0 `i 154  ]
 [e :U 155 ]
-"96
-[; ;I2CS2.c: 96:         }
+"100
+[; ;I2CS2.c: 100:         }
 }
 [e :U 152 ]
 [e :U 151 ]
-"98
-[; ;I2CS2.c: 98:         PIR1bits.SSPIF = 0;
+"102
+[; ;I2CS2.c: 102:         PIR1bits.SSPIF = 0;
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-"99
-[; ;I2CS2.c: 99:     }
+"103
+[; ;I2CS2.c: 103:     }
 }
 [e :U 145 ]
-"100
-[; ;I2CS2.c: 100: }
+"104
+[; ;I2CS2.c: 104: }
 [e :UE 138 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"104
-[; ;I2CS2.c: 104: void main(void) {
+"108
+[; ;I2CS2.c: 108: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"105
-[; ;I2CS2.c: 105:     setup();
-[e ( _setup ..  ]
 "109
-[; ;I2CS2.c: 109:     while(1){
+[; ;I2CS2.c: 109:     setup();
+[e ( _setup ..  ]
+"113
+[; ;I2CS2.c: 113:     while(1){
 [e :U 158 ]
 {
-"111
-[; ;I2CS2.c: 111:     }
+"115
+[; ;I2CS2.c: 115:     }
 }
 [e :U 157 ]
 [e $U 158  ]
 [e :U 159 ]
-"112
-[; ;I2CS2.c: 112:     return;
+"116
+[; ;I2CS2.c: 116:     return;
 [e $UE 156  ]
-"113
-[; ;I2CS2.c: 113: }
+"117
+[; ;I2CS2.c: 117: }
 [e :UE 156 ]
 }
-"117
-[; ;I2CS2.c: 117: void setup(void){
+"121
+[; ;I2CS2.c: 121: void setup(void){
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"118
-[; ;I2CS2.c: 118:     ANSEL = 0;
-[e = _ANSEL -> -> 0 `i `uc ]
-"119
-[; ;I2CS2.c: 119:     ANSELH = 0;
-[e = _ANSELH -> -> 0 `i `uc ]
-"120
-[; ;I2CS2.c: 120:     IOCBbits.IOCB = 1;
-[e = . . _IOCBbits 0 0 -> -> 1 `i `uc ]
-"121
-[; ;I2CS2.c: 121:     IOCBbits.IOCB1 = 1;
-[e = . . _IOCBbits 1 1 -> -> 1 `i `uc ]
 "122
-[; ;I2CS2.c: 122:     TRISA = 0;
-[e = _TRISA -> -> 0 `i `uc ]
+[; ;I2CS2.c: 122:     ANSEL = 0;
+[e = _ANSEL -> -> 0 `i `uc ]
 "123
-[; ;I2CS2.c: 123:     TRISBbits.TRISB0 = 1;
-[e = . . _TRISBbits 0 0 -> -> 1 `i `uc ]
+[; ;I2CS2.c: 123:     ANSELH = 0;
+[e = _ANSELH -> -> 0 `i `uc ]
 "124
-[; ;I2CS2.c: 124:     TRISBbits.TRISB1 = 1;
-[e = . . _TRISBbits 0 1 -> -> 1 `i `uc ]
+[; ;I2CS2.c: 124:     IOCBbits.IOCB = 1;
+[e = . . _IOCBbits 0 0 -> -> 1 `i `uc ]
 "125
-[; ;I2CS2.c: 125:     TRISD = 0;
-[e = _TRISD -> -> 0 `i `uc ]
+[; ;I2CS2.c: 125:     IOCBbits.IOCB1 = 1;
+[e = . . _IOCBbits 1 1 -> -> 1 `i `uc ]
 "126
-[; ;I2CS2.c: 126:     PORTA = 0;
-[e = _PORTA -> -> 0 `i `uc ]
+[; ;I2CS2.c: 126:     TRISA = 0;
+[e = _TRISA -> -> 0 `i `uc ]
 "127
-[; ;I2CS2.c: 127:     PORTB = 0;
-[e = _PORTB -> -> 0 `i `uc ]
+[; ;I2CS2.c: 127:     TRISBbits.TRISB0 = 1;
+[e = . . _TRISBbits 0 0 -> -> 1 `i `uc ]
 "128
-[; ;I2CS2.c: 128:     PORTD = 0;
-[e = _PORTD -> -> 0 `i `uc ]
+[; ;I2CS2.c: 128:     TRISBbits.TRISB1 = 1;
+[e = . . _TRISBbits 0 1 -> -> 1 `i `uc ]
 "129
-[; ;I2CS2.c: 129:     I2C_Slave_Init(0x50);
-[e ( _I2C_Slave_Init (1 -> -> 80 `i `uc ]
+[; ;I2CS2.c: 129:     TRISD = 0;
+[e = _TRISD -> -> 0 `i `uc ]
 "130
-[; ;I2CS2.c: 130: }
+[; ;I2CS2.c: 130:     PORTA = 0;
+[e = _PORTA -> -> 0 `i `uc ]
+"131
+[; ;I2CS2.c: 131:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
+"132
+[; ;I2CS2.c: 132:     PORTD = 0;
+[e = _PORTD -> -> 0 `i `uc ]
+"133
+[; ;I2CS2.c: 133:     I2C_Slave_Init(0x60);
+[e ( _I2C_Slave_Init (1 -> -> 96 `i `uc ]
+"134
+[; ;I2CS2.c: 134: }
 [e :UE 160 ]
 }

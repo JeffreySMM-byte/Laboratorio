@@ -33,6 +33,7 @@
 #include <pic16f887.h>
 #include "I2C.h"
 #include <xc.h>
+#include"LCD8bits.h"
 //*****************************************************************************
 // Definición de variables
 //*****************************************************************************
@@ -42,26 +43,107 @@
 // Definición de funciones para que se puedan colocar después del main de lo 
 // contrario hay que colocarlos todas las funciones antes del main
 //*****************************************************************************
+float adc1 = 0, deci1 = 0;
+uint8_t pvtoelquelolea = 0, ent1 = 0, dec1 = 0, segundos = 0, minutos = 0;
+
+
 void setup(void);
+int  BCD(int to_convert) // Función para convertir BCD a decimal (el RTC trabaja con BCD)
+{
+   return (to_convert >> 4) * 10 + (to_convert & 0x0F); 
+}
 
 //*****************************************************************************
 // Main
 //*****************************************************************************
 void main(void) {
     setup();
+    Lcd_Init();
+    Lcd_Clear();
+    Lcd_Set_Cursor(1, 1);
+    Lcd_Write_String("ADC");
+    Lcd_Set_Cursor(1, 6);
+    Lcd_Write_String("CONT");
+    Lcd_Set_Cursor(1, 11);
+    Lcd_Write_String("TIME");
     while(1){
         I2C_Master_Start();
-        I2C_Master_Write(0x50);
-        I2C_Master_Write(PORTB);
+        I2C_Master_Write(0x51);
+        adc1 = I2C_Master_Read(0);
         I2C_Master_Stop();
-        __delay_ms(200);
+        __delay_ms(10);
        
         I2C_Master_Start();
-        I2C_Master_Write(0x51);
-        PORTD = I2C_Master_Read(0);
+        I2C_Master_Write(0x61);
+        pvtoelquelolea = I2C_Master_Read(0);
         I2C_Master_Stop();
-        __delay_ms(200);
-        PORTB++;   
+        __delay_ms(10);
+        
+        
+        adc1 = (adc1)* 5/255;       //Se realiza un mapeo para los valores del ADRESH y se separa 
+        ent1 = adc1;                //en dos enteros para poder desplegarlos como la parte entera y decimal del voltaje
+        deci1 = (adc1 - ent1) * 100;
+        dec1 = deci1;
+        
+        Lcd_Set_Cursor(2, 1);
+        Lcd_Write_Number(ent1);
+        Lcd_Write_Char(".");
+        Lcd_Write_Number(dec1);
+        
+        
+
+        
+        
+        if(pvtoelquelolea < 10){ 
+            Lcd_Set_Cursor(2,7);
+            Lcd_Write_String("0");
+            Lcd_Write_Number(pvtoelquelolea);
+        }else{
+            Lcd_Set_Cursor(2,7);
+            Lcd_Write_Number(pvtoelquelolea);
+        }
+        
+//        if(pvtoelquelolea < 0){
+//            Lcd_Set_Cursor(2, 7);
+//            Lcd_Write_String("16");
+//            Lcd_Write_Number(pvtoelquelolea);
+//        } else if (pvtoelquelolea>16){
+//            Lcd_Set_Cursor(2, 7);
+//            Lcd_Write_String("0");
+//            Lcd_Write_Number(pvtoelquelolea);
+//            
+//        }
+        
+       //Lectura del RTC
+       I2C_Master_Start();       
+       I2C_Master_Write(0xD0); 
+       I2C_Master_Write(0);    
+       I2C_Master_Stop();
+       
+ 
+       I2C_Master_Start();
+       I2C_Master_Write(0xD1);                              // Initialize data read
+       segundos = BCD(I2C_Master_Read(0));                 // Lectura de segundos
+       I2C_Master_Stop(); 
+
+       I2C_Master_Start();
+       I2C_Master_Write(0xD1);                              // Initialize data read
+       minutos = BCD(I2C_Master_Read(0));                 // Lectura de minutos
+       I2C_Master_Stop();  
+
+
+       I2C_Master_Start();
+       I2C_Master_Write(0xD1);                              // Initialize data read
+       I2C_Master_Read(0);                                 // Lectura de fin de transmisión
+       I2C_Master_Stop();
+        
+        
+       Lcd_Set_Cursor(2, 12);
+       Lcd_Write_Number(minutos);
+       Lcd_Write_Char(':');
+       Lcd_Write_Number(segundos);
+       
+       
     }
     return;
 }

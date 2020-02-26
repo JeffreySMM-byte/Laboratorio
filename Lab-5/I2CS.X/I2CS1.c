@@ -105,12 +105,10 @@ void main(void) {
     while(1){
         ADC1();
         if(adc == 1){           // de ADRESH a una variable 
-            adc1 = ADRESH;
+            PORTB = ADRESH;
             adc = 0;
-            PORTB = adc1;
             ADCON0bits.GO_DONE = 1;
         }
-       __delay_ms(500);
     }
     return;
 }
@@ -118,7 +116,7 @@ void main(void) {
 // Función de Inicialización
 //*****************************************************************************
 void setup(void){
-    ANSEL = 0;
+    ANSEL = 0b00000001;
     ANSELH = 0;
     TRISAbits.TRISA0 = 1;
     TRISB = 0;

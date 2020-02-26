@@ -2694,27 +2694,113 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 void I2C_Slave_Init(uint8_t address);
 # 34 "I2CM.c" 2
-# 45 "I2CM.c"
+
+
+# 1 "./LCD8bits.h" 1
+# 37 "./LCD8bits.h"
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
+# 37 "./LCD8bits.h" 2
+
+
+
+void Lcd_Cmd(uint8_t z);
+void Lcd_Clear(void);
+void Lcd_Set_Cursor(uint8_t x, uint8_t y);
+void Lcd_Init(void);
+void Lcd_Write_Char(char a);
+void Lcd_Write_String(char *a);
+void Lcd_Write_Number(uint8_t var);
+# 36 "I2CM.c" 2
+# 46 "I2CM.c"
+float adc1 = 0, deci1 = 0;
+uint8_t pvtoelquelolea = 0, ent1 = 0, dec1 = 0, segundos = 0, minutos = 0;
+
+
 void setup(void);
+int BCD(int to_convert)
+{
+   return (to_convert >> 4) * 10 + (to_convert & 0x0F);
+}
 
 
 
 
 void main(void) {
     setup();
+    Lcd_Init();
+    Lcd_Clear();
+    Lcd_Set_Cursor(1, 1);
+    Lcd_Write_String("ADC");
+    Lcd_Set_Cursor(1, 6);
+    Lcd_Write_String("CONT");
+    Lcd_Set_Cursor(1, 11);
+    Lcd_Write_String("TIME");
     while(1){
         I2C_Master_Start();
-        I2C_Master_Write(0x50);
-        I2C_Master_Write(PORTB);
+        I2C_Master_Write(0x51);
+        adc1 = I2C_Master_Read(0);
         I2C_Master_Stop();
-        _delay((unsigned long)((200)*(4000000/4000.0)));
+        _delay((unsigned long)((10)*(4000000/4000.0)));
 
         I2C_Master_Start();
-        I2C_Master_Write(0x51);
-        PORTD = I2C_Master_Read(0);
+        I2C_Master_Write(0x61);
+        pvtoelquelolea = I2C_Master_Read(0);
         I2C_Master_Stop();
-        _delay((unsigned long)((200)*(4000000/4000.0)));
-        PORTB++;
+        _delay((unsigned long)((10)*(4000000/4000.0)));
+
+
+        adc1 = (adc1)* 5/255;
+        ent1 = adc1;
+        deci1 = (adc1 - ent1) * 100;
+        dec1 = deci1;
+
+        Lcd_Set_Cursor(2, 1);
+        Lcd_Write_Number(ent1);
+        Lcd_Write_Char(".");
+        Lcd_Write_Number(dec1);
+
+
+
+
+
+        if(pvtoelquelolea < 10){
+            Lcd_Set_Cursor(2,7);
+            Lcd_Write_String("0");
+            Lcd_Write_Number(pvtoelquelolea);
+        }else{
+            Lcd_Set_Cursor(2,7);
+            Lcd_Write_Number(pvtoelquelolea);
+        }
+# 118 "I2CM.c"
+       I2C_Master_Start();
+       I2C_Master_Write(0xD0);
+       I2C_Master_Write(0);
+       I2C_Master_Stop();
+
+
+       I2C_Master_Start();
+       I2C_Master_Write(0xD1);
+       segundos = BCD(I2C_Master_Read(0));
+       I2C_Master_Stop();
+
+       I2C_Master_Start();
+       I2C_Master_Write(0xD1);
+       minutos = BCD(I2C_Master_Read(0));
+       I2C_Master_Stop();
+
+
+       I2C_Master_Start();
+       I2C_Master_Write(0xD1);
+       I2C_Master_Read(0);
+       I2C_Master_Stop();
+
+
+       Lcd_Set_Cursor(2, 12);
+       Lcd_Write_Number(minutos);
+       Lcd_Write_Char(":");
+       Lcd_Write_Number(segundos);
+
+
     }
     return;
 }

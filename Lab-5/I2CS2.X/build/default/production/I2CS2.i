@@ -2713,17 +2713,21 @@ void setup(void);
 void __attribute__((picinterrupt(("")))) isr(void){
 
     if (INTCONbits.RBIF == 1){
-        if (PORTBbits.RB0 == 1){
+        if (PORTBbits.RB1 == 1){
             PORTA++;
         }
         if (PORTA > 15){
             PORTA = 0;
         }
-        if (PORTBbits.RB1 == 1){
-            PORTA--;
-        } else if (PORTA == 0){
-            PORTA = 15;
+        if (PORTBbits.RB0 == 1){
+            if(PORTA == 0){
+                PORTA = 15;
+            } else {
+                PORTA--;
+            }
+
         }
+
         INTCONbits.RBIF = 0;
        }
 
@@ -2752,7 +2756,7 @@ void __attribute__((picinterrupt(("")))) isr(void){
         }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
             z = SSPBUF;
             BF = 0;
-            SSPBUF = PORTB;
+            SSPBUF = PORTA;
             SSPCONbits.CKP = 1;
             _delay((unsigned long)((250)*(4000000/4000000.0)));
             while(SSPSTATbits.BF);
@@ -2789,5 +2793,5 @@ void setup(void){
     PORTA = 0;
     PORTB = 0;
     PORTD = 0;
-    I2C_Slave_Init(0x50);
+    I2C_Slave_Init(0x60);
 }

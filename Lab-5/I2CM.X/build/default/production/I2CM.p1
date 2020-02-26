@@ -1,30 +1,42 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"45 I2CM.c
-[; ;I2CM.c: 45: void setup(void);
+"50 I2CM.c
+[; ;I2CM.c: 50: void setup(void);
 [v _setup `(v ~T0 @X0 0 ef ]
+"43 ./LCD8bits.h
+[; ;./LCD8bits.h: 43: void Lcd_Init(void);
+[v _Lcd_Init `(v ~T0 @X0 0 ef ]
+"41
+[; ;./LCD8bits.h: 41: void Lcd_Clear(void);
+[v _Lcd_Clear `(v ~T0 @X0 0 ef ]
+"42
+[; ;./LCD8bits.h: 42: void Lcd_Set_Cursor(uint8_t x, uint8_t y);
+[v _Lcd_Set_Cursor `(v ~T0 @X0 0 ef2`uc`uc ]
+"45
+[; ;./LCD8bits.h: 45: void Lcd_Write_String(char *a);
+[v _Lcd_Write_String `(v ~T0 @X0 0 ef1`*uc ]
 "41 ./I2C.h
 [; ;./I2C.h: 41: void I2C_Master_Start(void);
 [v _I2C_Master_Start `(v ~T0 @X0 0 ef ]
 "55
 [; ;./I2C.h: 55: void I2C_Master_Write(unsigned d);
 [v _I2C_Master_Write `(v ~T0 @X0 0 ef1`ui ]
-"228 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 228: extern volatile unsigned char PORTB __attribute__((address(0x006)));
-[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
-"49 ./I2C.h
+"60
+[; ;./I2C.h: 60: unsigned short I2C_Master_Read(unsigned short a);
+[v _I2C_Master_Read `(us ~T0 @X0 0 ef1`us ]
+"49
 [; ;./I2C.h: 49: void I2C_Master_Stop(void);
 [v _I2C_Master_Stop `(v ~T0 @X0 0 ef ]
 [v F1284 `(v ~T0 @X0 1 tf1`ul ]
 "92 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic.h
 [v __delay `JF1284 ~T0 @X0 0 e ]
 [p i __delay ]
-"352 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 352: extern volatile unsigned char PORTD __attribute__((address(0x008)));
-[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
-"60 ./I2C.h
-[; ;./I2C.h: 60: unsigned short I2C_Master_Read(unsigned short a);
-[v _I2C_Master_Read `(us ~T0 @X0 0 ef1`us ]
+"46 ./LCD8bits.h
+[; ;./LCD8bits.h: 46: void Lcd_Write_Number(uint8_t var);
+[v _Lcd_Write_Number `(v ~T0 @X0 0 ef1`uc ]
+"44
+[; ;./LCD8bits.h: 44: void Lcd_Write_Char(char a);
+[v _Lcd_Write_Char `(v ~T0 @X0 0 ef1`uc ]
 "3387 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 3387: extern volatile unsigned char ANSEL __attribute__((address(0x188)));
 [v _ANSEL `Vuc ~T0 @X0 0 e@392 ]
@@ -37,6 +49,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1602
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1602: extern volatile unsigned char TRISD __attribute__((address(0x088)));
 [v _TRISD `Vuc ~T0 @X0 0 e@136 ]
+"228
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 228: extern volatile unsigned char PORTB __attribute__((address(0x006)));
+[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
+"352
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 352: extern volatile unsigned char PORTD __attribute__((address(0x008)));
+[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
 "29 ./I2C.h
 [; ;./I2C.h: 29: void I2C_Master_Init(const unsigned long c);
 [v _I2C_Master_Init `(v ~T0 @X0 0 ef1`Cul ]
@@ -298,94 +316,287 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
+"46 I2CM.c
+[; ;I2CM.c: 46: float adc1 = 0, deci1 = 0;
+[v _adc1 `f ~T0 @X0 1 e ]
+[i _adc1
+-> -> 0 `i `f
+]
+[v _deci1 `f ~T0 @X0 1 e ]
+[i _deci1
+-> -> 0 `i `f
+]
+"47
+[; ;I2CM.c: 47: uint8_t pvtoelquelolea = 0, ent1 = 0, dec1 = 0, segundos = 0, minutos = 0;
+[v _pvtoelquelolea `uc ~T0 @X0 1 e ]
+[i _pvtoelquelolea
+-> -> 0 `i `uc
+]
+[v _ent1 `uc ~T0 @X0 1 e ]
+[i _ent1
+-> -> 0 `i `uc
+]
+[v _dec1 `uc ~T0 @X0 1 e ]
+[i _dec1
+-> -> 0 `i `uc
+]
+[v _segundos `uc ~T0 @X0 1 e ]
+[i _segundos
+-> -> 0 `i `uc
+]
+[v _minutos `uc ~T0 @X0 1 e ]
+[i _minutos
+-> -> 0 `i `uc
+]
+"51
+[; ;I2CM.c: 51: int BCD(int to_convert)
+[v _BCD `(i ~T0 @X0 1 ef1`i ]
+"52
+[; ;I2CM.c: 52: {
+{
+[e :U _BCD ]
+"51
+[; ;I2CM.c: 51: int BCD(int to_convert)
+[v _to_convert `i ~T0 @X0 1 r1 ]
+"52
+[; ;I2CM.c: 52: {
+[f ]
+"53
+[; ;I2CM.c: 53:    return (to_convert >> 4) * 10 + (to_convert & 0x0F);
+[e ) + * >> _to_convert -> 4 `i -> 10 `i & _to_convert -> 15 `i ]
+[e $UE 138  ]
+"54
+[; ;I2CM.c: 54: }
+[e :UE 138 ]
+}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"50 I2CM.c
-[; ;I2CM.c: 50: void main(void) {
+"59
+[; ;I2CM.c: 59: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"51
-[; ;I2CM.c: 51:     setup();
-[e ( _setup ..  ]
-"52
-[; ;I2CM.c: 52:     while(1){
-[e :U 140 ]
-{
-"53
-[; ;I2CM.c: 53:         I2C_Master_Start();
-[e ( _I2C_Master_Start ..  ]
-"54
-[; ;I2CM.c: 54:         I2C_Master_Write(0x50);
-[e ( _I2C_Master_Write (1 -> -> 80 `i `ui ]
-"55
-[; ;I2CM.c: 55:         I2C_Master_Write(PORTB);
-[e ( _I2C_Master_Write (1 -> _PORTB `ui ]
-"56
-[; ;I2CM.c: 56:         I2C_Master_Stop();
-[e ( _I2C_Master_Stop ..  ]
-"57
-[; ;I2CM.c: 57:         _delay((unsigned long)((200)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"59
-[; ;I2CM.c: 59:         I2C_Master_Start();
-[e ( _I2C_Master_Start ..  ]
 "60
-[; ;I2CM.c: 60:         I2C_Master_Write(0x51);
-[e ( _I2C_Master_Write (1 -> -> 81 `i `ui ]
+[; ;I2CM.c: 60:     setup();
+[e ( _setup ..  ]
 "61
-[; ;I2CM.c: 61:         PORTD = I2C_Master_Read(0);
-[e = _PORTD -> ( _I2C_Master_Read (1 -> -> 0 `i `us `uc ]
+[; ;I2CM.c: 61:     Lcd_Init();
+[e ( _Lcd_Init ..  ]
 "62
-[; ;I2CM.c: 62:         I2C_Master_Stop();
-[e ( _I2C_Master_Stop ..  ]
+[; ;I2CM.c: 62:     Lcd_Clear();
+[e ( _Lcd_Clear ..  ]
 "63
-[; ;I2CM.c: 63:         _delay((unsigned long)((200)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[; ;I2CM.c: 63:     Lcd_Set_Cursor(1, 1);
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
 "64
-[; ;I2CM.c: 64:         PORTB++;
-[e ++ _PORTB -> -> 1 `i `Vuc ]
+[; ;I2CM.c: 64:     Lcd_Write_String("ADC");
+[e ( _Lcd_Write_String (1 :s 1C ]
 "65
-[; ;I2CM.c: 65:     }
-}
-[e :U 139 ]
-[e $U 140  ]
-[e :U 141 ]
+[; ;I2CM.c: 65:     Lcd_Set_Cursor(1, 6);
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 6 `i `uc ]
 "66
-[; ;I2CM.c: 66:     return;
-[e $UE 138  ]
+[; ;I2CM.c: 66:     Lcd_Write_String("CONT");
+[e ( _Lcd_Write_String (1 :s 2C ]
 "67
-[; ;I2CM.c: 67: }
-[e :UE 138 ]
-}
+[; ;I2CM.c: 67:     Lcd_Set_Cursor(1, 11);
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 11 `i `uc ]
+"68
+[; ;I2CM.c: 68:     Lcd_Write_String("TIME");
+[e ( _Lcd_Write_String (1 :s 3C ]
+"69
+[; ;I2CM.c: 69:     while(1){
+[e :U 141 ]
+{
+"70
+[; ;I2CM.c: 70:         I2C_Master_Start();
+[e ( _I2C_Master_Start ..  ]
 "71
-[; ;I2CM.c: 71: void setup(void){
+[; ;I2CM.c: 71:         I2C_Master_Write(0x51);
+[e ( _I2C_Master_Write (1 -> -> 81 `i `ui ]
+"72
+[; ;I2CM.c: 72:         adc1 = I2C_Master_Read(0);
+[e = _adc1 -> ( _I2C_Master_Read (1 -> -> 0 `i `us `f ]
+"73
+[; ;I2CM.c: 73:         I2C_Master_Stop();
+[e ( _I2C_Master_Stop ..  ]
+"74
+[; ;I2CM.c: 74:         _delay((unsigned long)((10)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"76
+[; ;I2CM.c: 76:         I2C_Master_Start();
+[e ( _I2C_Master_Start ..  ]
+"77
+[; ;I2CM.c: 77:         I2C_Master_Write(0x61);
+[e ( _I2C_Master_Write (1 -> -> 97 `i `ui ]
+"78
+[; ;I2CM.c: 78:         pvtoelquelolea = I2C_Master_Read(0);
+[e = _pvtoelquelolea -> ( _I2C_Master_Read (1 -> -> 0 `i `us `uc ]
+"79
+[; ;I2CM.c: 79:         I2C_Master_Stop();
+[e ( _I2C_Master_Stop ..  ]
+"80
+[; ;I2CM.c: 80:         _delay((unsigned long)((10)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+"83
+[; ;I2CM.c: 83:         adc1 = (adc1)* 5/255;
+[e = _adc1 / * _adc1 -> -> 5 `i `f -> -> 255 `i `f ]
+"84
+[; ;I2CM.c: 84:         ent1 = adc1;
+[e = _ent1 -> _adc1 `uc ]
+"85
+[; ;I2CM.c: 85:         deci1 = (adc1 - ent1) * 100;
+[e = _deci1 * - _adc1 -> -> _ent1 `i `f -> -> 100 `i `f ]
+"86
+[; ;I2CM.c: 86:         dec1 = deci1;
+[e = _dec1 -> _deci1 `uc ]
+"88
+[; ;I2CM.c: 88:         Lcd_Set_Cursor(2, 1);
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+"89
+[; ;I2CM.c: 89:         Lcd_Write_Number(ent1);
+[e ( _Lcd_Write_Number (1 _ent1 ]
+"90
+[; ;I2CM.c: 90:         Lcd_Write_Char(".");
+[e ( _Lcd_Write_Char (1 -> :s 4C `uc ]
+"91
+[; ;I2CM.c: 91:         Lcd_Write_Number(dec1);
+[e ( _Lcd_Write_Number (1 _dec1 ]
+"97
+[; ;I2CM.c: 97:         if(pvtoelquelolea < 10){
+[e $ ! < -> _pvtoelquelolea `i -> 10 `i 143  ]
+{
+"98
+[; ;I2CM.c: 98:             Lcd_Set_Cursor(2,7);
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 7 `i `uc ]
+"99
+[; ;I2CM.c: 99:             Lcd_Write_String("0");
+[e ( _Lcd_Write_String (1 :s 5C ]
+"100
+[; ;I2CM.c: 100:             Lcd_Write_Number(pvtoelquelolea);
+[e ( _Lcd_Write_Number (1 _pvtoelquelolea ]
+"101
+[; ;I2CM.c: 101:         }else{
+}
+[e $U 144  ]
+[e :U 143 ]
+{
+"102
+[; ;I2CM.c: 102:             Lcd_Set_Cursor(2,7);
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 7 `i `uc ]
+"103
+[; ;I2CM.c: 103:             Lcd_Write_Number(pvtoelquelolea);
+[e ( _Lcd_Write_Number (1 _pvtoelquelolea ]
+"104
+[; ;I2CM.c: 104:         }
+}
+[e :U 144 ]
+"118
+[; ;I2CM.c: 118:        I2C_Master_Start();
+[e ( _I2C_Master_Start ..  ]
+"119
+[; ;I2CM.c: 119:        I2C_Master_Write(0xD0);
+[e ( _I2C_Master_Write (1 -> -> 208 `i `ui ]
+"120
+[; ;I2CM.c: 120:        I2C_Master_Write(0);
+[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
+"121
+[; ;I2CM.c: 121:        I2C_Master_Stop();
+[e ( _I2C_Master_Stop ..  ]
+"124
+[; ;I2CM.c: 124:        I2C_Master_Start();
+[e ( _I2C_Master_Start ..  ]
+"125
+[; ;I2CM.c: 125:        I2C_Master_Write(0xD1);
+[e ( _I2C_Master_Write (1 -> -> 209 `i `ui ]
+"126
+[; ;I2CM.c: 126:        segundos = BCD(I2C_Master_Read(0));
+[e = _segundos -> ( _BCD (1 -> ( _I2C_Master_Read (1 -> -> 0 `i `us `i `uc ]
+"127
+[; ;I2CM.c: 127:        I2C_Master_Stop();
+[e ( _I2C_Master_Stop ..  ]
+"129
+[; ;I2CM.c: 129:        I2C_Master_Start();
+[e ( _I2C_Master_Start ..  ]
+"130
+[; ;I2CM.c: 130:        I2C_Master_Write(0xD1);
+[e ( _I2C_Master_Write (1 -> -> 209 `i `ui ]
+"131
+[; ;I2CM.c: 131:        minutos = BCD(I2C_Master_Read(0));
+[e = _minutos -> ( _BCD (1 -> ( _I2C_Master_Read (1 -> -> 0 `i `us `i `uc ]
+"132
+[; ;I2CM.c: 132:        I2C_Master_Stop();
+[e ( _I2C_Master_Stop ..  ]
+"135
+[; ;I2CM.c: 135:        I2C_Master_Start();
+[e ( _I2C_Master_Start ..  ]
+"136
+[; ;I2CM.c: 136:        I2C_Master_Write(0xD1);
+[e ( _I2C_Master_Write (1 -> -> 209 `i `ui ]
+"137
+[; ;I2CM.c: 137:        I2C_Master_Read(0);
+[e ( _I2C_Master_Read (1 -> -> 0 `i `us ]
+"138
+[; ;I2CM.c: 138:        I2C_Master_Stop();
+[e ( _I2C_Master_Stop ..  ]
+"141
+[; ;I2CM.c: 141:        Lcd_Set_Cursor(2, 12);
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 12 `i `uc ]
+"142
+[; ;I2CM.c: 142:        Lcd_Write_Number(minutos);
+[e ( _Lcd_Write_Number (1 _minutos ]
+"143
+[; ;I2CM.c: 143:        Lcd_Write_Char(":");
+[e ( _Lcd_Write_Char (1 -> :s 6C `uc ]
+"144
+[; ;I2CM.c: 144:        Lcd_Write_Number(segundos);
+[e ( _Lcd_Write_Number (1 _segundos ]
+"147
+[; ;I2CM.c: 147:     }
+}
+[e :U 140 ]
+[e $U 141  ]
+[e :U 142 ]
+"148
+[; ;I2CM.c: 148:     return;
+[e $UE 139  ]
+"149
+[; ;I2CM.c: 149: }
+[e :UE 139 ]
+}
+"153
+[; ;I2CM.c: 153: void setup(void){
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"72
-[; ;I2CM.c: 72:     ANSEL = 0;
+"154
+[; ;I2CM.c: 154:     ANSEL = 0;
 [e = _ANSEL -> -> 0 `i `uc ]
-"73
-[; ;I2CM.c: 73:     ANSELH = 0;
+"155
+[; ;I2CM.c: 155:     ANSELH = 0;
 [e = _ANSELH -> -> 0 `i `uc ]
-"74
-[; ;I2CM.c: 74:     TRISB = 0;
+"156
+[; ;I2CM.c: 156:     TRISB = 0;
 [e = _TRISB -> -> 0 `i `uc ]
-"75
-[; ;I2CM.c: 75:     TRISD = 0;
+"157
+[; ;I2CM.c: 157:     TRISD = 0;
 [e = _TRISD -> -> 0 `i `uc ]
-"76
-[; ;I2CM.c: 76:     PORTB = 0;
+"158
+[; ;I2CM.c: 158:     PORTB = 0;
 [e = _PORTB -> -> 0 `i `uc ]
-"77
-[; ;I2CM.c: 77:     PORTD = 0;
+"159
+[; ;I2CM.c: 159:     PORTD = 0;
 [e = _PORTD -> -> 0 `i `uc ]
-"78
-[; ;I2CM.c: 78:     I2C_Master_Init(100000);
+"160
+[; ;I2CM.c: 160:     I2C_Master_Init(100000);
 [e ( _I2C_Master_Init (1 -> -> 100000 `l `ul ]
-"79
-[; ;I2CM.c: 79: }
-[e :UE 142 ]
+"161
+[; ;I2CM.c: 161: }
+[e :UE 145 ]
 }
+[a 2C 67 79 78 84 0 ]
+[a 3C 84 73 77 69 0 ]
+[a 1C 65 68 67 0 ]
+[a 6C 58 0 ]
+[a 5C 48 0 ]
+[a 4C 46 0 ]

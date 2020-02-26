@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.10 build 88905656 
-                                                                                               Mon Feb 24 19:27:59 2020
+                                                                                               Wed Feb 26 12:13:58 2020
 
 Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1 
      1                           	processor	16F887
@@ -383,7 +383,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
    369 ;;
    370 ;; *************** function _main *****************
    371 ;; Defined at:
-   372 ;;		line 104 in file "I2CS2.c"
+   372 ;;		line 108 in file "I2CS2.c"
    373 ;; Parameters:    Size  Location     Type
    374 ;;		None
    375 ;; Auto vars:     Size  Location     Type
@@ -418,13 +418,13 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
    404                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
    405                           
    406                           
-   407                           ;I2CS2.c: 105:     setup();
+   407                           ;I2CS2.c: 109:     setup();
    408  00CD  120A  118A  20B4  120A  118A  	fcall	_setup
    409  00D2                     l71:	
-   410                           ;I2CS2.c: 109:     while(1){
+   410                           ;I2CS2.c: 113:     while(1){
    411                           
    412  00D2                     l72:	
-   413                           ;I2CS2.c: 111:     }
+   413                           ;I2CS2.c: 115:     }
    414                           
    415  00D2  28D2               	goto	l71
    416  00D3  120A  118A  280C   	ljmp	start
@@ -434,7 +434,7 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
    420  00B4                     __ptext1:	
    421 ;; *************** function _setup *****************
    422 ;; Defined at:
-   423 ;;		line 117 in file "I2CS2.c"
+   423 ;;		line 121 in file "I2CS2.c"
    424 ;; Parameters:    Size  Location     Type
    425 ;;		None
    426 ;; Auto vars:     Size  Location     Type
@@ -470,58 +470,58 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
    456                           ; Regs used in _setup: [wreg+status,2+status,0+pclath+cstack]
    457                           
    458                           
-   459                           ;I2CS2.c: 118:     ANSEL = 0;
+   459                           ;I2CS2.c: 122:     ANSEL = 0;
    460  00B4  1683               	bsf	3,5	;RP0=1, select bank3
    461  00B5  1703               	bsf	3,6	;RP1=1, select bank3
    462  00B6  0188               	clrf	8	;volatile
    463                           
-   464                           ;I2CS2.c: 119:     ANSELH = 0;
+   464                           ;I2CS2.c: 123:     ANSELH = 0;
    465  00B7  0189               	clrf	9	;volatile
    466  00B8                     l740:	
    467                           
-   468                           ;I2CS2.c: 120:     IOCBbits.IOCB = 1;
+   468                           ;I2CS2.c: 124:     IOCBbits.IOCB = 1;
    469  00B8  3001               	movlw	1
    470  00B9  1683               	bsf	3,5	;RP0=1, select bank1
    471  00BA  1303               	bcf	3,6	;RP1=0, select bank1
    472  00BB  0096               	movwf	22	;volatile
    473  00BC                     l742:	
    474                           
-   475                           ;I2CS2.c: 121:     IOCBbits.IOCB1 = 1;
+   475                           ;I2CS2.c: 125:     IOCBbits.IOCB1 = 1;
    476  00BC  1496               	bsf	22,1	;volatile
    477  00BD                     l744:	
    478                           
-   479                           ;I2CS2.c: 122:     TRISA = 0;
+   479                           ;I2CS2.c: 126:     TRISA = 0;
    480  00BD  0185               	clrf	5	;volatile
    481  00BE                     l746:	
    482                           
-   483                           ;I2CS2.c: 123:     TRISBbits.TRISB0 = 1;
+   483                           ;I2CS2.c: 127:     TRISBbits.TRISB0 = 1;
    484  00BE  1406               	bsf	6,0	;volatile
    485  00BF                     l748:	
    486                           
-   487                           ;I2CS2.c: 124:     TRISBbits.TRISB1 = 1;
+   487                           ;I2CS2.c: 128:     TRISBbits.TRISB1 = 1;
    488  00BF  1486               	bsf	6,1	;volatile
    489  00C0                     l750:	
    490                           
-   491                           ;I2CS2.c: 125:     TRISD = 0;
+   491                           ;I2CS2.c: 129:     TRISD = 0;
    492  00C0  0188               	clrf	8	;volatile
    493  00C1                     l752:	
    494                           
-   495                           ;I2CS2.c: 126:     PORTA = 0;
+   495                           ;I2CS2.c: 130:     PORTA = 0;
    496  00C1  1283               	bcf	3,5	;RP0=0, select bank0
    497  00C2  1303               	bcf	3,6	;RP1=0, select bank0
    498  00C3  0185               	clrf	5	;volatile
    499  00C4                     l754:	
    500                           
-   501                           ;I2CS2.c: 127:     PORTB = 0;
+   501                           ;I2CS2.c: 131:     PORTB = 0;
    502  00C4  0186               	clrf	6	;volatile
    503  00C5                     l756:	
    504                           
-   505                           ;I2CS2.c: 128:     PORTD = 0;
+   505                           ;I2CS2.c: 132:     PORTD = 0;
    506  00C5  0188               	clrf	8	;volatile
    507  00C6                     l758:	
    508                           
-   509                           ;I2CS2.c: 129:     I2C_Slave_Init(0x50);
-   510  00C6  3050               	movlw	80
+   509                           ;I2CS2.c: 133:     I2C_Slave_Init(0x60);
+   510  00C6  3060               	movlw	96
    511  00C7  120A  118A  209A  120A  118A  	fcall	_I2C_Slave_Init
    512  00CC                     l77:	
    513  00CC  0008               	return
@@ -668,10 +668,10 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
    653  0019                     u3_20:	
    654  0019                     i1l766:	
    655                           
-   656                           ;I2CS2.c: 53:         if (PORTBbits.RB0 == 1){
+   656                           ;I2CS2.c: 53:         if (PORTBbits.RB1 == 1){
    657  0019  1283               	bcf	3,5	;RP0=0, select bank0
    658  001A  1303               	bcf	3,6	;RP1=0, select bank0
-   659  001B  1C06               	btfss	6,0	;volatile
+   659  001B  1C86               	btfss	6,1	;volatile
    660  001C  281E               	goto	u4_21
    661  001D  281F               	goto	u4_20
    662  001E                     u4_21:	
@@ -701,238 +701,240 @@ Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1
    686  0029  0185               	clrf	5	;volatile
    687  002A                     i1l774:	
    688                           
-   689                           ;I2CS2.c: 59:         if (PORTBbits.RB1 == 1){
-   690  002A  1C86               	btfss	6,1	;volatile
+   689                           ;I2CS2.c: 59:         if (PORTBbits.RB0 == 1){
+   690  002A  1C06               	btfss	6,0	;volatile
    691  002B  282D               	goto	u6_21
    692  002C  282E               	goto	u6_20
    693  002D                     u6_21:	
-   694  002D  2831               	goto	i1l778
+   694  002D  2838               	goto	i1l782
    695  002E                     u6_20:	
    696  002E                     i1l776:	
    697                           
-   698                           ;I2CS2.c: 60:             PORTA--;
-   699  002E  3001               	movlw	1
-   700  002F  0285               	subwf	5,f	;volatile
-   701                           
-   702                           ;I2CS2.c: 61:         } else if (PORTA == 0){
-   703  0030  2838               	goto	i1l782
-   704  0031                     i1l778:	
-   705  0031  0805               	movf	5,w	;volatile
-   706  0032  1D03               	btfss	3,2
-   707  0033  2835               	goto	u7_21
-   708  0034  2836               	goto	u7_20
-   709  0035                     u7_21:	
-   710  0035  2838               	goto	i1l782
-   711  0036                     u7_20:	
-   712  0036                     i1l780:	
-   713                           
-   714                           ;I2CS2.c: 62:             PORTA = 15;
-   715  0036  300F               	movlw	15
-   716  0037  0085               	movwf	5	;volatile
-   717  0038                     i1l782:	
-   718                           
-   719                           ;I2CS2.c: 64:         INTCONbits.RBIF = 0;
-   720  0038  100B               	bcf	11,0	;volatile
-   721  0039                     i1l784:	
-   722                           
-   723                           ;I2CS2.c: 68:    if(PIR1bits.SSPIF == 1){
-   724  0039  1283               	bcf	3,5	;RP0=0, select bank0
-   725  003A  1303               	bcf	3,6	;RP1=0, select bank0
-   726  003B  1D8C               	btfss	12,3	;volatile
-   727  003C  283E               	goto	u8_21
-   728  003D  283F               	goto	u8_20
-   729  003E                     u8_21:	
-   730  003E  2893               	goto	i1l66
-   731  003F                     u8_20:	
-   732  003F                     i1l786:	
-   733                           
-   734                           ;I2CS2.c: 70:         SSPCONbits.CKP = 0;
-   735  003F  1214               	bcf	20,4	;volatile
-   736                           
-   737                           ;I2CS2.c: 72:         if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
-   738  0040  1B14               	btfsc	20,6	;volatile
-   739  0041  2843               	goto	u9_21
-   740  0042  2844               	goto	u9_20
-   741  0043                     u9_21:	
-   742  0043  2848               	goto	i1l790
-   743  0044                     u9_20:	
-   744  0044                     i1l788:	
-   745  0044  1F94               	btfss	20,7	;volatile
-   746  0045  2847               	goto	u10_21
-   747  0046  2848               	goto	u10_20
-   748  0047                     u10_21:	
-   749  0047  284F               	goto	i1l798
-   750  0048                     u10_20:	
-   751  0048                     i1l790:	
-   752                           
-   753                           ;I2CS2.c: 73:             z = SSPBUF;
-   754  0048  0813               	movf	19,w	;volatile
-   755  0049  00F0               	movwf	??_isr
-   756  004A  0870               	movf	??_isr,w
-   757  004B  00F5               	movwf	_z
-   758  004C                     i1l792:	
-   759                           
-   760                           ;I2CS2.c: 74:             SSPCONbits.SSPOV = 0;
-   761  004C  1314               	bcf	20,6	;volatile
-   762  004D                     i1l794:	
-   763                           
-   764                           ;I2CS2.c: 75:             SSPCONbits.WCOL = 0;
-   765  004D  1394               	bcf	20,7	;volatile
-   766  004E                     i1l796:	
-   767                           
-   768                           ;I2CS2.c: 76:             SSPCONbits.CKP = 1;
-   769  004E  1614               	bsf	20,4	;volatile
-   770  004F                     i1l798:	
-   771                           
-   772                           ;I2CS2.c: 79:         if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
-   773  004F  1683               	bsf	3,5	;RP0=1, select bank1
-   774  0050  1303               	bcf	3,6	;RP1=0, select bank1
-   775  0051  1A94               	btfsc	20,5	;volatile
-   776  0052  2854               	goto	u11_21
-   777  0053  2855               	goto	u11_20
-   778  0054                     u11_21:	
-   779  0054  2870               	goto	i1l57
-   780  0055                     u11_20:	
-   781  0055                     i1l800:	
-   782  0055  1914               	btfsc	20,2	;volatile
-   783  0056  2858               	goto	u12_21
-   784  0057  2859               	goto	u12_20
-   785  0058                     u12_21:	
-   786  0058  2870               	goto	i1l57
-   787  0059                     u12_20:	
-   788  0059                     i1l802:	
-   789                           
-   790                           ;I2CS2.c: 81:             z = SSPBUF;
-   791  0059  1283               	bcf	3,5	;RP0=0, select bank0
-   792  005A  1303               	bcf	3,6	;RP1=0, select bank0
-   793  005B  0813               	movf	19,w	;volatile
-   794  005C  00F0               	movwf	??_isr
-   795  005D  0870               	movf	??_isr,w
-   796  005E  00F5               	movwf	_z
-   797  005F                     i1l804:	
-   798                           
-   799                           ;I2CS2.c: 83:             PIR1bits.SSPIF = 0;
-   800  005F  118C               	bcf	12,3	;volatile
-   801  0060                     i1l806:	
-   802                           
-   803                           ;I2CS2.c: 84:             SSPCONbits.CKP = 1;
-   804  0060  1614               	bsf	20,4	;volatile
-   805  0061                     i1l58:	
-   806                           ;I2CS2.c: 85:             while(!SSPSTATbits.BF);
-   807                           
-   808  0061  1683               	bsf	3,5	;RP0=1, select bank1
-   809  0062  1303               	bcf	3,6	;RP1=0, select bank1
-   810  0063  1C14               	btfss	20,0	;volatile
-   811  0064  2866               	goto	u13_21
-   812  0065  2867               	goto	u13_20
-   813  0066                     u13_21:	
-   814  0066  2861               	goto	i1l58
-   815  0067                     u13_20:	
-   816  0067                     i1l808:	
-   817                           
-   818                           ;I2CS2.c: 86:             PORTD = SSPBUF;
-   819  0067  1283               	bcf	3,5	;RP0=0, select bank0
-   820  0068  1303               	bcf	3,6	;RP1=0, select bank0
-   821  0069  0813               	movf	19,w	;volatile
-   822  006A  0088               	movwf	8	;volatile
-   823                           
-   824                           ;I2CS2.c: 87:             _delay((unsigned long)((250)*(4000000/4000000.0)));
-   825  006B  3053               	movlw	83
-   826  006C  00F0               	movwf	??_isr
-   827  006D                     u19_27:	
-   828  006D  0BF0               	decfsz	??_isr,f
-   829  006E  286D               	goto	u19_27
-   830                           
-   831                           ;I2CS2.c: 89:         }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
-   832  006F  2890               	goto	i1l61
-   833  0070                     i1l57:	
-   834  0070  1A94               	btfsc	20,5	;volatile
-   835  0071  2873               	goto	u14_21
-   836  0072  2874               	goto	u14_20
-   837  0073                     u14_21:	
-   838  0073  2890               	goto	i1l61
-   839  0074                     u14_20:	
-   840  0074                     i1l810:	
-   841  0074  1D14               	btfss	20,2	;volatile
-   842  0075  2877               	goto	u15_21
-   843  0076  2878               	goto	u15_20
-   844  0077                     u15_21:	
-   845  0077  2890               	goto	i1l61
-   846  0078                     u15_20:	
-   847  0078                     i1l812:	
-   848                           
-   849                           ;I2CS2.c: 90:             z = SSPBUF;
-   850  0078  1283               	bcf	3,5	;RP0=0, select bank0
-   851  0079  1303               	bcf	3,6	;RP1=0, select bank0
-   852  007A  0813               	movf	19,w	;volatile
-   853  007B  00F0               	movwf	??_isr
-   854  007C  0870               	movf	??_isr,w
-   855  007D  00F5               	movwf	_z
-   856  007E                     i1l814:	
-   857                           
-   858                           ;I2CS2.c: 91:             BF = 0;
-   859  007E  1683               	bsf	3,5	;RP0=1, select bank1
-   860  007F  1303               	bcf	3,6	;RP1=0, select bank1
-   861  0080  1014               	bcf	20,0	;volatile
-   862                           
-   863                           ;I2CS2.c: 92:             SSPBUF = PORTB;
-   864  0081  1283               	bcf	3,5	;RP0=0, select bank0
-   865  0082  1303               	bcf	3,6	;RP1=0, select bank0
-   866  0083  0806               	movf	6,w	;volatile
-   867  0084  0093               	movwf	19	;volatile
-   868  0085                     i1l816:	
-   869                           
-   870                           ;I2CS2.c: 93:             SSPCONbits.CKP = 1;
-   871  0085  1614               	bsf	20,4	;volatile
-   872                           
-   873                           ;I2CS2.c: 94:             _delay((unsigned long)((250)*(4000000/4000000.0)));
-   874  0086  3053               	movlw	83
-   875  0087  00F0               	movwf	??_isr
-   876  0088                     u20_27:	
-   877  0088  0BF0               	decfsz	??_isr,f
-   878  0089  2888               	goto	u20_27
-   879  008A                     i1l63:	
-   880                           ;I2CS2.c: 95:             while(SSPSTATbits.BF);
-   881                           
-   882  008A  1683               	bsf	3,5	;RP0=1, select bank1
-   883  008B  1303               	bcf	3,6	;RP1=0, select bank1
-   884  008C  1814               	btfsc	20,0	;volatile
-   885  008D  288F               	goto	u16_21
-   886  008E  2890               	goto	u16_20
-   887  008F                     u16_21:	
-   888  008F  288A               	goto	i1l63
-   889  0090                     u16_20:	
-   890  0090                     i1l61:	
-   891                           
-   892                           ;I2CS2.c: 98:         PIR1bits.SSPIF = 0;
-   893  0090  1283               	bcf	3,5	;RP0=0, select bank0
-   894  0091  1303               	bcf	3,6	;RP1=0, select bank0
-   895  0092  118C               	bcf	12,3	;volatile
-   896  0093                     i1l66:	
-   897  0093  0872               	movf	??_isr+2,w
-   898  0094  008A               	movwf	10
-   899  0095  0E71               	swapf	(??_isr+1)^(0+4294967168),w
-   900  0096  0083               	movwf	3
-   901  0097  0EFE               	swapf	btemp,f
-   902  0098  0E7E               	swapf	btemp,w
-   903  0099  0009               	retfie
-   904  009A                     __end_of_isr:	
-   905  007E                     btemp	set	126	;btemp
-   906  007E                     wtemp0	set	126
-   907                           
-   908                           	psect	intentry
-   909  0004                     __pintentry:	
-   910                           ;incstack = 0
-   911                           ; Regs used in _isr: [wreg+status,2+status,0]
-   912                           
-   913  0004                     interrupt_function:	
-   914  007E                     saved_w	set	btemp
-   915  0004  00FE               	movwf	btemp
-   916  0005  0E03               	swapf	3,w
-   917  0006  00F1               	movwf	??_isr+1
-   918  0007  080A               	movf	10,w
-   919  0008  00F2               	movwf	??_isr+2
-   920  0009  120A  118A  2815   	ljmp	_isr
+   698                           ;I2CS2.c: 60:             if(PORTA == 0){
+   699  002E  0805               	movf	5,w	;volatile
+   700  002F  1D03               	btfss	3,2
+   701  0030  2832               	goto	u7_21
+   702  0031  2833               	goto	u7_20
+   703  0032                     u7_21:	
+   704  0032  2836               	goto	i1l780
+   705  0033                     u7_20:	
+   706  0033                     i1l778:	
+   707                           
+   708                           ;I2CS2.c: 61:                 PORTA = 15;
+   709  0033  300F               	movlw	15
+   710  0034  0085               	movwf	5	;volatile
+   711                           
+   712                           ;I2CS2.c: 62:             } else {
+   713  0035  2838               	goto	i1l782
+   714  0036                     i1l780:	
+   715                           
+   716                           ;I2CS2.c: 63:                 PORTA--;
+   717  0036  3001               	movlw	1
+   718  0037  0285               	subwf	5,f	;volatile
+   719  0038                     i1l782:	
+   720                           
+   721                           ;I2CS2.c: 68:         INTCONbits.RBIF = 0;
+   722  0038  100B               	bcf	11,0	;volatile
+   723  0039                     i1l784:	
+   724                           
+   725                           ;I2CS2.c: 72:    if(PIR1bits.SSPIF == 1){
+   726  0039  1283               	bcf	3,5	;RP0=0, select bank0
+   727  003A  1303               	bcf	3,6	;RP1=0, select bank0
+   728  003B  1D8C               	btfss	12,3	;volatile
+   729  003C  283E               	goto	u8_21
+   730  003D  283F               	goto	u8_20
+   731  003E                     u8_21:	
+   732  003E  2893               	goto	i1l66
+   733  003F                     u8_20:	
+   734  003F                     i1l786:	
+   735                           
+   736                           ;I2CS2.c: 74:         SSPCONbits.CKP = 0;
+   737  003F  1214               	bcf	20,4	;volatile
+   738                           
+   739                           ;I2CS2.c: 76:         if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
+   740  0040  1B14               	btfsc	20,6	;volatile
+   741  0041  2843               	goto	u9_21
+   742  0042  2844               	goto	u9_20
+   743  0043                     u9_21:	
+   744  0043  2848               	goto	i1l790
+   745  0044                     u9_20:	
+   746  0044                     i1l788:	
+   747  0044  1F94               	btfss	20,7	;volatile
+   748  0045  2847               	goto	u10_21
+   749  0046  2848               	goto	u10_20
+   750  0047                     u10_21:	
+   751  0047  284F               	goto	i1l798
+   752  0048                     u10_20:	
+   753  0048                     i1l790:	
+   754                           
+   755                           ;I2CS2.c: 77:             z = SSPBUF;
+   756  0048  0813               	movf	19,w	;volatile
+   757  0049  00F0               	movwf	??_isr
+   758  004A  0870               	movf	??_isr,w
+   759  004B  00F5               	movwf	_z
+   760  004C                     i1l792:	
+   761                           
+   762                           ;I2CS2.c: 78:             SSPCONbits.SSPOV = 0;
+   763  004C  1314               	bcf	20,6	;volatile
+   764  004D                     i1l794:	
+   765                           
+   766                           ;I2CS2.c: 79:             SSPCONbits.WCOL = 0;
+   767  004D  1394               	bcf	20,7	;volatile
+   768  004E                     i1l796:	
+   769                           
+   770                           ;I2CS2.c: 80:             SSPCONbits.CKP = 1;
+   771  004E  1614               	bsf	20,4	;volatile
+   772  004F                     i1l798:	
+   773                           
+   774                           ;I2CS2.c: 83:         if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
+   775  004F  1683               	bsf	3,5	;RP0=1, select bank1
+   776  0050  1303               	bcf	3,6	;RP1=0, select bank1
+   777  0051  1A94               	btfsc	20,5	;volatile
+   778  0052  2854               	goto	u11_21
+   779  0053  2855               	goto	u11_20
+   780  0054                     u11_21:	
+   781  0054  2870               	goto	i1l57
+   782  0055                     u11_20:	
+   783  0055                     i1l800:	
+   784  0055  1914               	btfsc	20,2	;volatile
+   785  0056  2858               	goto	u12_21
+   786  0057  2859               	goto	u12_20
+   787  0058                     u12_21:	
+   788  0058  2870               	goto	i1l57
+   789  0059                     u12_20:	
+   790  0059                     i1l802:	
+   791                           
+   792                           ;I2CS2.c: 85:             z = SSPBUF;
+   793  0059  1283               	bcf	3,5	;RP0=0, select bank0
+   794  005A  1303               	bcf	3,6	;RP1=0, select bank0
+   795  005B  0813               	movf	19,w	;volatile
+   796  005C  00F0               	movwf	??_isr
+   797  005D  0870               	movf	??_isr,w
+   798  005E  00F5               	movwf	_z
+   799  005F                     i1l804:	
+   800                           
+   801                           ;I2CS2.c: 87:             PIR1bits.SSPIF = 0;
+   802  005F  118C               	bcf	12,3	;volatile
+   803  0060                     i1l806:	
+   804                           
+   805                           ;I2CS2.c: 88:             SSPCONbits.CKP = 1;
+   806  0060  1614               	bsf	20,4	;volatile
+   807  0061                     i1l58:	
+   808                           ;I2CS2.c: 89:             while(!SSPSTATbits.BF);
+   809                           
+   810  0061  1683               	bsf	3,5	;RP0=1, select bank1
+   811  0062  1303               	bcf	3,6	;RP1=0, select bank1
+   812  0063  1C14               	btfss	20,0	;volatile
+   813  0064  2866               	goto	u13_21
+   814  0065  2867               	goto	u13_20
+   815  0066                     u13_21:	
+   816  0066  2861               	goto	i1l58
+   817  0067                     u13_20:	
+   818  0067                     i1l808:	
+   819                           
+   820                           ;I2CS2.c: 90:             PORTD = SSPBUF;
+   821  0067  1283               	bcf	3,5	;RP0=0, select bank0
+   822  0068  1303               	bcf	3,6	;RP1=0, select bank0
+   823  0069  0813               	movf	19,w	;volatile
+   824  006A  0088               	movwf	8	;volatile
+   825                           
+   826                           ;I2CS2.c: 91:             _delay((unsigned long)((250)*(4000000/4000000.0)));
+   827  006B  3053               	movlw	83
+   828  006C  00F0               	movwf	??_isr
+   829  006D                     u19_27:	
+   830  006D  0BF0               	decfsz	??_isr,f
+   831  006E  286D               	goto	u19_27
+   832                           
+   833                           ;I2CS2.c: 93:         }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
+   834  006F  2890               	goto	i1l61
+   835  0070                     i1l57:	
+   836  0070  1A94               	btfsc	20,5	;volatile
+   837  0071  2873               	goto	u14_21
+   838  0072  2874               	goto	u14_20
+   839  0073                     u14_21:	
+   840  0073  2890               	goto	i1l61
+   841  0074                     u14_20:	
+   842  0074                     i1l810:	
+   843  0074  1D14               	btfss	20,2	;volatile
+   844  0075  2877               	goto	u15_21
+   845  0076  2878               	goto	u15_20
+   846  0077                     u15_21:	
+   847  0077  2890               	goto	i1l61
+   848  0078                     u15_20:	
+   849  0078                     i1l812:	
+   850                           
+   851                           ;I2CS2.c: 94:             z = SSPBUF;
+   852  0078  1283               	bcf	3,5	;RP0=0, select bank0
+   853  0079  1303               	bcf	3,6	;RP1=0, select bank0
+   854  007A  0813               	movf	19,w	;volatile
+   855  007B  00F0               	movwf	??_isr
+   856  007C  0870               	movf	??_isr,w
+   857  007D  00F5               	movwf	_z
+   858  007E                     i1l814:	
+   859                           
+   860                           ;I2CS2.c: 95:             BF = 0;
+   861  007E  1683               	bsf	3,5	;RP0=1, select bank1
+   862  007F  1303               	bcf	3,6	;RP1=0, select bank1
+   863  0080  1014               	bcf	20,0	;volatile
+   864                           
+   865                           ;I2CS2.c: 96:             SSPBUF = PORTA;
+   866  0081  1283               	bcf	3,5	;RP0=0, select bank0
+   867  0082  1303               	bcf	3,6	;RP1=0, select bank0
+   868  0083  0805               	movf	5,w	;volatile
+   869  0084  0093               	movwf	19	;volatile
+   870  0085                     i1l816:	
+   871                           
+   872                           ;I2CS2.c: 97:             SSPCONbits.CKP = 1;
+   873  0085  1614               	bsf	20,4	;volatile
+   874                           
+   875                           ;I2CS2.c: 98:             _delay((unsigned long)((250)*(4000000/4000000.0)));
+   876  0086  3053               	movlw	83
+   877  0087  00F0               	movwf	??_isr
+   878  0088                     u20_27:	
+   879  0088  0BF0               	decfsz	??_isr,f
+   880  0089  2888               	goto	u20_27
+   881  008A                     i1l63:	
+   882                           ;I2CS2.c: 99:             while(SSPSTATbits.BF);
+   883                           
+   884  008A  1683               	bsf	3,5	;RP0=1, select bank1
+   885  008B  1303               	bcf	3,6	;RP1=0, select bank1
+   886  008C  1814               	btfsc	20,0	;volatile
+   887  008D  288F               	goto	u16_21
+   888  008E  2890               	goto	u16_20
+   889  008F                     u16_21:	
+   890  008F  288A               	goto	i1l63
+   891  0090                     u16_20:	
+   892  0090                     i1l61:	
+   893                           
+   894                           ;I2CS2.c: 102:         PIR1bits.SSPIF = 0;
+   895  0090  1283               	bcf	3,5	;RP0=0, select bank0
+   896  0091  1303               	bcf	3,6	;RP1=0, select bank0
+   897  0092  118C               	bcf	12,3	;volatile
+   898  0093                     i1l66:	
+   899  0093  0872               	movf	??_isr+2,w
+   900  0094  008A               	movwf	10
+   901  0095  0E71               	swapf	(??_isr+1)^(0+4294967168),w
+   902  0096  0083               	movwf	3
+   903  0097  0EFE               	swapf	btemp,f
+   904  0098  0E7E               	swapf	btemp,w
+   905  0099  0009               	retfie
+   906  009A                     __end_of_isr:	
+   907  007E                     btemp	set	126	;btemp
+   908  007E                     wtemp0	set	126
+   909                           
+   910                           	psect	intentry
+   911  0004                     __pintentry:	
+   912                           ;incstack = 0
+   913                           ; Regs used in _isr: [wreg+status,2+status,0]
+   914                           
+   915  0004                     interrupt_function:	
+   916  007E                     saved_w	set	btemp
+   917  0004  00FE               	movwf	btemp
+   918  0005  0E03               	swapf	3,w
+   919  0006  00F1               	movwf	??_isr+1
+   920  0007  080A               	movf	10,w
+   921  0008  00F2               	movwf	??_isr+2
+   922  0009  120A  118A  2815   	ljmp	_isr
 
 
 Data Sizes:
@@ -1056,7 +1058,7 @@ DATA                 0      0       6      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.10 build 88905656 
-Symbol Table                                                                                   Mon Feb 24 19:27:59 2020
+Symbol Table                                                                                   Wed Feb 26 12:13:58 2020
 
                        _z 0075               __CFG_CP$OFF 0000               _SSPSTATbits 0094  
                       _BF 04A0                        l71 00D2                        l72 00D2  
@@ -1073,7 +1075,7 @@ Symbol Table                                                                    
                     i1l58 0061                      i1l66 0093                      u3_20 0019  
                     u3_21 0018                      u4_20 001F                      u4_21 001E  
                     u5_20 0029                      u5_21 0028                      u6_20 002E  
-                    u6_21 002D                      u7_20 0036                      u7_21 0035  
+                    u6_21 002D                      u7_20 0033                      u7_21 0032  
                     u8_20 003F                      u8_21 003E                      u9_20 0044  
                     u9_21 0043              __CFG_WRT$OFF 0000                      _dato 0074  
                     _main 00CD                      btemp 007E                      start 000C  
@@ -1086,7 +1088,7 @@ Symbol Table                                                                    
                    i1l790 0048                     i1l782 0038                     i1l774 002A  
                    i1l766 0019                     i1l792 004C                     i1l776 002E  
                    i1l768 001F                     i1l784 0039                     i1l794 004D  
-                   i1l786 003F                     i1l778 0031                     i1l796 004E  
+                   i1l786 003F                     i1l778 0033                     i1l796 004E  
                    i1l788 0044                     i1l798 004F                     u10_20 0048  
                    u10_21 0047                     u11_20 0055                     u11_21 0054  
                    u12_20 0059                     u12_21 0058                     u20_27 0088  
